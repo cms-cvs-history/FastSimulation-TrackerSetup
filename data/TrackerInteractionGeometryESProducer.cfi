@@ -1,0 +1,18 @@
+# With an ideal geometry (for the reconstruction)
+es_module = TrackerInteractionGeometryESProducer {
+
+    # Description of the tracker material
+    include "FastSimulation/TrackerSetup/data/TrackerMaterial.cfi"
+
+}
+
+# The same as above but with a misaligned tracker geometry (for the simulation)
+es_module misalignedTrackerInteractionGeometry = TrackerInteractionGeometryESProducer {
+
+    untracked string trackerGeometryLabel = "MisAligned"
+    string appendToDataLabel = "MisAligned"
+
+    # Description of the tracker material
+    include "FastSimulation/TrackerSetup/data/TrackerMaterial.cfi"
+
+}
