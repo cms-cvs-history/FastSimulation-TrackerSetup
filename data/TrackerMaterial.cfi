@@ -70,10 +70,10 @@ PSet TrackerMaterial = {
     // Pixel Barrel Outside walls and cables (endcap)
     vdouble PXBOutCables1InnerRadius = { 11.9, 11.9 } 
     vdouble PXBOutCables1OuterRadius = { 15.5, 15.5} 
-    vdouble PXBOutCables1ZPosition = { 27.999, 28.799 } # Lengthen by 8 mm 
+    vdouble PXBOutCables1ZPosition = { 28.799, 28.799 } # Lengthen by 8 mm 
     vdouble PXBOutCables2InnerRadius = { 3.8, 3.8 }
     vdouble PXBOutCables2OuterRadius = { 16.5, 16.5 }
-    vdouble PXBOutCables2ZPosition = { 28.0, 28.8 }  # Lengthen by 8 mm 
+    vdouble PXBOutCables2ZPosition = { 28.8, 28.8 }  # Lengthen by 8 mm 
     // Pixel Outside walls and cables (barrel and endcap)
     vdouble PixelOutCablesRadius = { 17.1, 17.5 } # 4 mm outer
     vdouble PixelOutCablesLength = { 64.8, 72.0 } 
