@@ -3,109 +3,110 @@ PSet TrackerMaterial = {
 
     // version 0 = Tracker geometry used between CMSSW_1_2_0 and CMSSW_1_4_10. Works for CSA07; 
     // version 1 = Tuned to CMSSW_1_7_0 geometry
-    uint32 TrackerMaterialVersion = 1
+    // version 2 = Tuned to CMSSW_1_8_0 geometry
+    uint32 TrackerMaterialVersion = 2
     //**********************************************************************
     // Thickness of all (sensitive and dead) layers in x/X0
     //**********************************************************************
     // Beam Pipe
-    vdouble BeamPipeThickness = { 0.0038, 0.00265 } # decrease of 30%
+    vdouble BeamPipeThickness 		= { 0.0038, 0.00265, 0.00265} # decrease of 30%
     // Pixel Barrel Layers 1-3
-    vdouble PXBThickness = { 0.0222, 0.0217 } # ~ no change
+    vdouble PXBThickness 		= { 0.0222, 0.0217, 0.0217 } # ~ no change
     // Pixel Barrel services at the end of layers 1-3
-    vdouble PXB1CablesThickness = { 0.100, 0.042 } # divide by 2
-    vdouble PXB2CablesThickness = { 0.040, 0.042 } # ~ no change
-    vdouble PXB3CablesThickness = { 0.030, 0.042 } # increase by 50%
+    vdouble PXB1CablesThickness 	= { 0.100, 0.042, 0.042 } # divide by 2
+    vdouble PXB2CablesThickness 	= { 0.040, 0.042, 0.042 } # ~ no change
+    vdouble PXB3CablesThickness 	= { 0.030, 0.042, 0.042 } # increase by 50%
     // Pixel Barrel outside cables
-    vdouble PXBOutCables1Thickness = { 0.040, 0.040 } # no change
-    vdouble PXBOutCables2Thickness = { 0.025, 0.015 } # divide by 2
+    vdouble PXBOutCables1Thickness 	= { 0.040, 0.040, 0.040 } # no change
+    vdouble PXBOutCables2Thickness 	= { 0.025, 0.015, 0.015 } # divide by 2
     // Pixel Disks 1-2
-    vdouble PXDThickness = { 0.044, 0.058 } # Increase by a third 
+    vdouble PXDThickness 		= { 0.044, 0.058, 0.058 } # Increase by a third
     // Pixel Endcap outside cables
-    vdouble PXDOutCables1Thickness = { 0.023, 0.034 } # Increase by a third
-    vdouble PXDOutCables2Thickness = { 0.085, 0.185 } # Increase by 110%
+    vdouble PXDOutCables1Thickness 	= { 0.023, 0.034, 0.034 } # Increase by a third
+    vdouble PXDOutCables2Thickness	= { 0.085, 0.185, 0.185 } # Increase by 110%
     // Tracker Inner barrel layers 1-4
-    vdouble TIBLayer1Thickness = { 0.060, 0.053 } # decrease of 10% 
-    vdouble TIBLayer2Thickness = { 0.047, 0.053 } # increase of 15%
-    vdouble TIBLayer3Thickness = { 0.035, 0.035 } # no change 
-    vdouble TIBLayer4Thickness = { 0.033, 0.040 } # increase of 20%
+    vdouble TIBLayer1Thickness 		= { 0.060, 0.053, 0.053 } # decrease of 10%
+    vdouble TIBLayer2Thickness 		= { 0.047, 0.053, 0.053 } # increase of 15%
+    vdouble TIBLayer3Thickness 		= { 0.035, 0.035, 0.035 } # no change
+    vdouble TIBLayer4Thickness 		= { 0.033, 0.040, 0.040 } # increase of 20%
     // TIB outside services (endcap)
-    vdouble TIBOutCables1Thickness = { 0.040, 0.108 } # Put everything in one layer 
-    vdouble TIBOutCables2Thickness = { 0.040, 0.000 } 
+    vdouble TIBOutCables1Thickness 	= { 0.040, 0.108, 0.108 } # Put everything in one layer
+    vdouble TIBOutCables2Thickness 	= { 0.040, 0.000, 0.000 } # remove
     // Tracker Inner disks layers 1-3
-    vdouble TIDLayer1Thickness = { 0.050, 0.040 } # decrease by 20%
-    vdouble TIDLayer2Thickness = { 0.050, 0.040 } # decrease by 20%
-    vdouble TIDLayer3Thickness = { 0.050, 0.055 } # increase by 10%
+    vdouble TIDLayer1Thickness 		= { 0.050, 0.040, 0.040 } # decrease by 20%
+    vdouble TIDLayer2Thickness 		= { 0.050, 0.040, 0.040 } # decrease by 20%
+    vdouble TIDLayer3Thickness 		= { 0.050, 0.055, 0.055 } # increase by 10%
     // TID outside wall (endcap)
-    vdouble TIDOutsideThickness = { 0.070, 0.074 } # increase of ~5%
+    vdouble TIDOutsideThickness 	= { 0.070, 0.074, 0.074 } # increase of ~5%
     // TOB inside wall (barrel)
-    vdouble TOBInsideThickness = { 0.017, 0.009 } # decrease by a factor 2
+    vdouble TOBInsideThickness 		= { 0.017, 0.009, 0.009 } # decrease by a factor 2
     // Tracker Outer barrel layers 1-6
-    vdouble TOBLayer1Thickness = { 0.044, 0.030 } # decrease by 30%
-    vdouble TOBLayer2Thickness = { 0.044, 0.030 } # decrease by 30%
-    vdouble TOBLayer3Thickness = { 0.033, 0.022 } # decrease by 30%
-    vdouble TOBLayer4Thickness = { 0.033, 0.022 } # decrease by 30% 
-    vdouble TOBLayer5Thickness = { 0.033, 0.022 } # decrease by 30%
-    vdouble TOBLayer6Thickness = { 0.033, 0.022 } # decrease by 30% 
+    vdouble TOBLayer1Thickness 		= { 0.044, 0.030, 0.030 } # decrease by 30%
+    vdouble TOBLayer2Thickness 		= { 0.044, 0.030, 0.030 } # decrease by 30%
+    vdouble TOBLayer3Thickness 		= { 0.033, 0.022, 0.022 } # decrease by 30%
+    vdouble TOBLayer4Thickness 		= { 0.033, 0.022, 0.022 } # decrease by 30%
+    vdouble TOBLayer5Thickness 		= { 0.033, 0.022, 0.022 } # decrease by 30%
+    vdouble TOBLayer6Thickness 		= { 0.033, 0.022, 0.022 } # decrease by 30%
     // TOB services (endcap)
-    vdouble TOBOutsideThickness = { 0.090, 0.150 } # 80% increase
+    vdouble TOBOutsideThickness 	= { 0.090, 0.150, 0.150 } # 80% increase
     // Tracker EndCap disks layers 1-9
-    vdouble TECLayerThickness = { 0.041, 0.045 } # 10% increase 
+    vdouble TECLayerThickness 		= { 0.041, 0.045, 0.045 } # 10% increase
     // TOB outside wall (barrel)
-    vdouble BarrelCablesThickness = { 0.100, 0.038 } # A factor of three less
+    vdouble BarrelCablesThickness 	= { 0.100, 0.038, 0.038 } # A factor of three less
     // TEC outside wall (endcap)
-    vdouble EndcapCables1Thickness = { 0.260, 0.210 } # 20% decrease
-    vdouble EndcapCables2Thickness = { 0.080, 0.000 } # 70% increase 
-#    replace famosSimHits.TrackerMaterial.EndcapCables2Thickness = { 0.080, 0.130 } # 70% increase     
+    vdouble EndcapCables1Thickness 	= { 0.260, 0.210, 0.210 } # 20% decrease
+    vdouble EndcapCables2Thickness 	= { 0.080, 0.000, 0.000 } # 70% increase
+#    replace famosSimHits.TrackerMaterial.EndcapCables2Thickness = { 0.080, 0.130, 0.130 } # 70% increase
 
     //**********************************************************************
     // Position of dead material layers (cables, services, etc.)
     //**********************************************************************
     // Beam pipe
-    vdouble BeamPipeRadius = { 3.000, 3.000 } 
-    vdouble BeamPipeLength = { 26.4, 28.3 } # Lengthen bt 1.9 cm 
+    vdouble BeamPipeRadius 		= {  3.000, 3.000,  3.000 }
+    vdouble BeamPipeLength 		= { 26.4,  28.3,   28.3   } # Lengthen bt 1.9 cm
     // Cables and Services at the end of PIXB1,2,3 ("disk")
-    vdouble PXB1CablesInnerRadius = { 3.6, 3.7 } # shorten by 1 mm 
-    vdouble PXB2CablesInnerRadius = { 6.1, 6.3 } # shorten by 2 mm
-    vdouble PXB3CablesInnerRadius = { 8.5, 9.0 } # shorten by 5 mm
+    vdouble PXB1CablesInnerRadius 	= { 3.6, 3.7, 3.7 } # shorten by 1 mm
+    vdouble PXB2CablesInnerRadius 	= { 6.1, 6.3, 6.3 } # shorten by 2 mm
+    vdouble PXB3CablesInnerRadius 	= { 8.5, 9.0, 9.0 } # shorten by 5 mm
     // Pixel Barrel Outside walls and cables (endcap)
-    vdouble PXBOutCables1InnerRadius = { 11.9, 11.9 } 
-    vdouble PXBOutCables1OuterRadius = { 15.5, 15.5} 
-    vdouble PXBOutCables1ZPosition = { 28.799, 28.799 } # Lengthen by 8 mm 
-    vdouble PXBOutCables2InnerRadius = { 3.8, 3.8 }
-    vdouble PXBOutCables2OuterRadius = { 16.5, 16.5 }
-    vdouble PXBOutCables2ZPosition = { 28.8, 28.8 }  # Lengthen by 8 mm 
+    vdouble PXBOutCables1InnerRadius 	= { 11.9,   11.9,   11.9   }
+    vdouble PXBOutCables1OuterRadius 	= { 15.5,   15.5,   15.5   }
+    vdouble PXBOutCables1ZPosition 	= { 27.999, 28.799, 28.799 } # Lengthen by 8 mm
+    vdouble PXBOutCables2InnerRadius 	= {  3.8,    3.8,    3.8   }
+    vdouble PXBOutCables2OuterRadius 	= { 16.5,   16.5,   16.5   }
+    vdouble PXBOutCables2ZPosition 	= { 28.0,   28.8,   28.8   } # Lengthen by 8 mm
     // Pixel Outside walls and cables (barrel and endcap)
-    vdouble PixelOutCablesRadius = { 17.1, 17.5 } # 4 mm outer
-    vdouble PixelOutCablesLength = { 64.8, 72.0 } 
-    vdouble PixelOutCablesInnerRadius = { 3.0, 3.0 } 
-    vdouble PixelOutCablesOuterRadius = { 17.3, 17.61 }  # 3 mm outer
-    vdouble PixelOutCablesZPosition = { 64.9, 72.1 } 
+    vdouble PixelOutCablesRadius 	= { 17.1, 17.5,  17.5   } # 4 mm outer
+    vdouble PixelOutCablesLength 	= { 64.8, 72.0,  72.0   }
+    vdouble PixelOutCablesInnerRadius 	= {  3.0,  3.0,   7.197 } # # stop this disk at eta=3
+    vdouble PixelOutCablesOuterRadius 	= { 17.3, 17.61, 17.61  } # 3 mm outer
+    vdouble PixelOutCablesZPosition 	= { 64.9, 72.1,  72.1   }
     // Tracker Inner Barrel Outside Cables and walls (endcap)
-    vdouble TIBOutCables1InnerRadius = { 22.5, 22.5 } 
-    vdouble TIBOutCables1OuterRadius = { 53.9, 53.9 } 
-    vdouble TIBOutCables1ZPosition = { 75.001, 74.0 } 
-    vdouble TIBOutCables2InnerRadius = { 35.5, 35.5 } 
-    vdouble TIBOutCables2OuterRadius = { 53.901, 53.901 } 
-    vdouble TIBOutCables2ZPosition = { 75.001, 74.001 } 
+    vdouble TIBOutCables1InnerRadius 	= { 22.5,   22.5,   22.5   }
+    vdouble TIBOutCables1OuterRadius 	= { 53.9,   53.9,   53.9   }
+    vdouble TIBOutCables1ZPosition 	= { 75.001, 74.0,   74.0   } # -1 cm
+    vdouble TIBOutCables2InnerRadius 	= { 35.5,   35.5,   35.5   }
+    vdouble TIBOutCables2OuterRadius 	= { 53.901, 53.901, 53.901 }
+    vdouble TIBOutCables2ZPosition 	= { 75.001, 74.001, 74.001 } # -1 cm
     // Tracker Inner Disks Outside Cables and walls (endcap)
-    vdouble TIDOutCablesInnerRadius = { 32.0, 22.0 } # 10 cm more! 
-    vdouble TIDOutCablesZPosition = { 108.0, 108.0 } 
+    vdouble TIDOutCablesInnerRadius 	= {  32.0,  22.0,  22.0 } # 10 cm more!
+    vdouble TIDOutCablesZPosition 	= { 108.0, 108.0, 108.0 }
     // Tracker outer barrel Inside wall (barrel)
-    vdouble TOBInCablesRadius = { 54.5, 54.5 } 
-    vdouble TOBInCablesLength = { 108.2, 108.2 } 
+    vdouble TOBInCablesRadius 		= {  54.5,  54.5,  54.5 }
+    vdouble TOBInCablesLength 		= { 108.2, 108.2, 108.2 }
     // Tracker Outer Barrel Outside Cables and walls (barrel and endcap)
-    vdouble TOBOutCablesInnerRadius = { 55.0, 55.0 } 
-    vdouble TOBOutCablesOuterRadius = { 109.5, 111.0 } 
-    vdouble TOBOutCablesZPosition = { 110.0, 115.0 } 
-    vdouble TOBOutCablesRadius = { 119.5, 119.5 } 
-    vdouble TOBOutCablesLength = { 299.9, 299.9 } 
+    vdouble TOBOutCablesInnerRadius 	= {  55.0,  55.0,  55.0 } 
+    vdouble TOBOutCablesOuterRadius 	= { 109.5, 111.0, 111.0 } 
+    vdouble TOBOutCablesZPosition 	= { 110.0, 115.0, 115.0 } 
+    vdouble TOBOutCablesRadius 		= { 119.5, 119.5, 119.5 } 
+    vdouble TOBOutCablesLength 		= { 299.9, 299.9, 299.9 } 
     // Tracker Endcaps Outside Cables and walls (endcaps)
-    vdouble TECOutCables1InnerRadius = { 6.0, 30.0 } # Not that low!
-    vdouble TECOutCables1OuterRadius = { 120.001, 120.001 } 
-    vdouble TECOutCables1ZPosition = { 300.0, 300.0 } 
-    vdouble TECOutCables2InnerRadius = { 70.0, 68.0 } # 2cm longer 
-    vdouble TECOutCables2OuterRadius = { 120.001, 120.001 } 
-    vdouble TECOutCables2ZPosition = { 300.0, 300.0 } 
+    vdouble TECOutCables1InnerRadius 	= {   6.0,    30.0,     4.42  } # Not that low! # for eta>3
+    vdouble TECOutCables1OuterRadius 	= { 120.001, 120.001, 120.001 } 
+    vdouble TECOutCables1ZPosition 	= { 300.0,   300.0,   300.0   } 
+    vdouble TECOutCables2InnerRadius 	= { 70.0,     68.0,    68.0   } # 2cm longer 
+    vdouble TECOutCables2OuterRadius 	= { 120.001, 120.001, 120.001 } 
+    vdouble TECOutCables2ZPosition 	= { 300.0,   300.0,   300.0   } 
 
     //*********************************************************************
     // Fudge factor to reproduce the layer inhomgeneties
@@ -181,6 +182,14 @@ PSet TrackerMaterial = {
 	 27,  # TEC Layer 9
 	 27,  # TEC Layer 9
 	113,  # Barrel Wall
+	114,  # Endcap Wall : 4.86<eta<4.91
+	114,  # Endcap Wall : 4.82<eta<4.86
+	114,  # Endcap Wall : 4.40<eta<4.82
+	114,  # Endcap Wall : 4.00<eta<4.40
+	114,  # Endcap Wall : 3.71<eta<4.00
+	114,  # Endcap Wall : 3.61<eta<3.71
+	114,  # Endcap Wall : 3.50<eta<3.61
+	114,  # Endcap Wall : 3.00<eta<3.50
 	114,  # Endcap Wall
 	114   # Endcap Wall
     } 
@@ -252,6 +261,14 @@ PSet TrackerMaterial = {
 	 0.0,  # TEC Layer 9
 	32.0,  # TEC Layer 9
        120.0,  # Barrel wall
+         4.42, # Endcap Wall : 4.86<eta<4.91
+	 4.65, # Endcap Wall : 4.82<eta<4.86
+	 4.84, # Endcap Wall : 4.40<eta<4.82
+	 7.37, # Endcap Wall : 4.00<eta<4.40
+	10.99, # Endcap Wall : 3.71<eta<4.00
+	14.70, # Endcap Wall : 3.61<eta<3.71
+	16.24, # Endcap Wall : 3.50<eta<3.61
+	18.13, # Endcap Wall : 3.00<eta<3.50
         33.0,  # Endcap wall
         68.0   # Endcap wall
     } 
@@ -323,6 +340,14 @@ PSet TrackerMaterial = {
 	 32.0,  # TEC Layer 9
 	 60.0,  # TEC Layer 9
 	301.0,  # Barrel wall
+          4.65, # Endcap Wall : 4.86<eta<4.91
+	  4.84, # Endcap Wall : 4.82<eta<4.86
+	  7.37, # Endcap Wall : 4.40<eta<4.82
+	 10.99, # Endcap Wall : 4.00<eta<4.40
+	 14.70, # Endcap Wall : 3.71<eta<4.00
+	 16.24, # Endcap Wall : 3.61<eta<3.71
+	 18.13, # Endcap Wall : 3.50<eta<3.61
+	 30.00, # Endcap Wall : 3.00<eta<3.50
 	 35.0,  # Endcap wall
 	120.0   # Endcap wall
     } 
@@ -394,7 +419,15 @@ PSet TrackerMaterial = {
 	 3.0,  # TEC Layer 9
 	 0.6,  # TEC Layer 9
          3.8,  # Barrel wall
-         3.0,  # Endcap wall
+        18.74,  # Endcap Wall : 4.86<eta<4.91
+	 4.57,  # Endcap Wall : 4.82<eta<4.86
+	 0.604, # Endcap Wall : 4.40<eta<4.82
+	 0.424, # Endcap Wall : 4.00<eta<4.40
+	 0.327, # Endcap Wall : 3.71<eta<4.00
+	 0.591, # Endcap Wall : 3.61<eta<3.71
+	 1.81,  # Endcap Wall : 3.50<eta<3.61
+	 2.37,  # Endcap Wall : 3.00<eta<3.50
+         1.0,  # Endcap wall: decrease from 3.0 (v2) to 1.0 (v3)
          1.6   # Endcap wall
     }
     
