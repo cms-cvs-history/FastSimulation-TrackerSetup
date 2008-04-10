@@ -1,5 +1,6 @@
 # Material effects to be simulated in the tracker material and associated cuts
-PSet TrackerMaterial = {
+block TrackerMaterialBlock = {
+  PSet TrackerMaterial = {
 
     // version 0 = Tracker geometry used between CMSSW_1_2_0 and CMSSW_1_4_10. Works for CSA07; 
     // version 1 = Tuned to CMSSW_1_7_0 geometry
@@ -431,5 +432,6 @@ PSet TrackerMaterial = {
          1.6   # Endcap wall
     }
     
+  }
 }
 
