@@ -93,7 +93,7 @@ block TrackerMaterialBlock = {
     vdouble TIDOutCablesInnerRadius 	= {  32.0,  22.0,  22.0 } # 10 cm more!
     vdouble TIDOutCablesZPosition 	= { 108.0, 108.0, 108.0 }
     // Tracker outer barrel Inside wall (barrel)
-    vdouble TOBInCablesRadius 		= {  54.5,  54.5,  54.5 }
+    vdouble TOBInCablesRadius 		= {  54.5,  54.5,  54.6 }
     vdouble TOBInCablesLength 		= { 108.2, 108.2, 108.2 }
     // Tracker Outer Barrel Outside Cables and walls (barrel and endcap)
     vdouble TOBOutCablesInnerRadius 	= {  55.0,  55.0,  55.0 } 
