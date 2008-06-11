@@ -66,6 +66,13 @@ class TrackerInteractionGeometry
   std::vector<double> beamPipeThickness;
   /// Pixel Barrel Layers 1-3
   std::vector<double> pxbThickness;
+  // Stacked Pixel Barrel layers 1-6
+  std::vector<double> pxbStack1Thickness;
+  std::vector<double> pxbStack2Thickness;
+  std::vector<double> pxbStack3Thickness;
+  std::vector<double> pxbStack4Thickness;
+  std::vector<double> pxbStack5Thickness;
+  std::vector<double> pxbStack6Thickness;
   /// Pixel Barrel services at the end of layers 1-3
   std::vector<double> pxb1CablesThickness;
   std::vector<double> pxb2CablesThickness;
@@ -169,6 +176,13 @@ class TrackerInteractionGeometry
   MediumProperties *_theMPBeamPipe;
   /// The barrel pixel layers
   MediumProperties *_theMPPixelBarrel;
+  // The Stacked Pixel Barrel layers
+  MediumProperties *_theMPPixelBarrelS1;
+  MediumProperties *_theMPPixelBarrelS2; 
+  MediumProperties *_theMPPixelBarrelS3; 
+  MediumProperties *_theMPPixelBarrelS4; 
+  MediumProperties *_theMPPixelBarrelS5; 
+  MediumProperties *_theMPPixelBarrelS6; 
   /// The endcap pixel layers
   MediumProperties *_theMPPixelEndcap;
   /// A series of cables/walls to reproduce the full sim
