@@ -308,7 +308,7 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   const SimpleCylinderBounds  PIXBS6( maxRadius-0.005, maxRadius+0.005, -maxLength, +maxLength);
 
 
-/*
+
   // Pixel Barrel Outside walls and cables
   const SimpleDiskBounds PIXBOut4( pxbOutCables1InnerRadius[version],pxbOutCables1OuterRadius[version],-0.5,0.5);
   const Surface::PositionType PPIXBOut4(0.0,0.0,pxbOutCables1ZPosition[version]);
@@ -321,7 +321,7 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
 
   const SimpleDiskBounds PIXBOut6(pixelOutCablesInnerRadius[version],pixelOutCablesOuterRadius[version],-0.5,0.5);
   const Surface::PositionType PPIXBOut6(0.0,0.0,pixelOutCablesZPosition[version]);
-*/
+
 
 /*
   // Tracker Inner Barrel : thin detectors (300 microns)
@@ -587,7 +587,7 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
 					 fudgeFactors(layerNr)));
   else
     delete theCylinder;
-/*
+
   layerNr = 104;
   theDisk = new BoundDisk(PPIXBOut4,theRotation2,PIXBOut4);
   theDisk->setMediumProperties(_theMPPixelOutside4);
@@ -607,7 +607,7 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
 					 fudgeFactors(layerNr)));
   else
     delete theDisk;
-*/
+
   layerNr = 4;
   theDisk = new BoundDisk(PPIXD1,theRotation2,PIXD1);
   theDisk->setMediumProperties(_theMPPixelEndcap);
@@ -627,6 +627,28 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
 					 fudgeFactors(layerNr)));
   else
     delete theDisk;
+
+
+  layerNr = 106;
+  theCylinder = new BoundCylinder(thePosition,theRotation,PIXBOut5);
+  theCylinder->setMediumProperties(_theMPPixelOutside5);
+  if ( theCylinder->mediumProperties()->radLen() > 0. ) 
+    _theCylinders.push_back(TrackerLayer(theCylinder,false,layerNr,
+					 minDim(layerNr),maxDim(layerNr),
+					 fudgeFactors(layerNr)));
+  else
+    delete theCylinder;
+
+  layerNr = 107;
+  theDisk = new BoundDisk(PPIXBOut6,theRotation2,PIXBOut6);
+  theDisk->setMediumProperties(_theMPPixelOutside6);
+  if ( theDisk->mediumProperties()->radLen() > 0. ) 
+    _theCylinders.push_back(TrackerLayer(theDisk,true,layerNr,
+					 minDim(layerNr),maxDim(layerNr),
+					 fudgeFactors(layerNr)));
+  else
+    delete theDisk;
+
 
   layerNr = 28;
   theCylinder = new BoundCylinder(thePosition,theRotation,PIXBS1);
@@ -688,28 +710,6 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   else
     delete theCylinder;
 
-
-/*
-  layerNr = 106;
-  theCylinder = new BoundCylinder(thePosition,theRotation,PIXBOut5);
-  theCylinder->setMediumProperties(_theMPPixelOutside5);
-  if ( theCylinder->mediumProperties()->radLen() > 0. ) 
-    _theCylinders.push_back(TrackerLayer(theCylinder,false,layerNr,
-					 minDim(layerNr),maxDim(layerNr),
-					 fudgeFactors(layerNr)));
-  else
-    delete theCylinder;
-
-  layerNr = 107;
-  theDisk = new BoundDisk(PPIXBOut6,theRotation2,PIXBOut6);
-  theDisk->setMediumProperties(_theMPPixelOutside6);
-  if ( theDisk->mediumProperties()->radLen() > 0. ) 
-    _theCylinders.push_back(TrackerLayer(theDisk,true,layerNr,
-					 minDim(layerNr),maxDim(layerNr),
-					 fudgeFactors(layerNr)));
-  else
-    delete theDisk;
-*/
 
   // Inner Barrel 
 /*
