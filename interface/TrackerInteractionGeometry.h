@@ -79,8 +79,8 @@ class TrackerInteractionGeometry
   std::vector<double> pxdOutCables1Thickness;
   std::vector<double> pxdOutCables2Thickness;
   /// Tracker Inner barrel layers 1-4
-  std::vector<double> tibLayer1Thickness;
-  std::vector<double> tibLayer2Thickness;
+  std::vector<double> strixelLayer1Thickness;
+  std::vector<double> strixelLayer2Thickness;
   std::vector<double> tibLayer3Thickness;
   std::vector<double> tibLayer4Thickness;
   /// TIB outside services (endcap)
@@ -95,8 +95,8 @@ class TrackerInteractionGeometry
   /// TOB inside wall (barrel)
   std::vector<double> tobInsideThickness;
   /// Tracker Outer barrel layers 1-6
-  std::vector<double> tobLayer1Thickness;
-  std::vector<double> tobLayer2Thickness;
+  std::vector<double> strixelLayer3Thickness;
+  std::vector<double> strixelLayer4Thickness;
   std::vector<double> tobLayer3Thickness;
   std::vector<double> tobLayer4Thickness;
   std::vector<double> tobLayer5Thickness;
@@ -180,17 +180,17 @@ class TrackerInteractionGeometry
   MediumProperties *_theMPPixelOutside5;
   MediumProperties *_theMPPixelOutside6;
   /// The tracker inner barrel layer 1
-  MediumProperties *_theMPTIB1;
+  MediumProperties *_theMPSTRIX1;
   /// The tracker inner barrel layer 2
-  MediumProperties *_theMPTIB2;
+  MediumProperties *_theMPSTRIX2;
   /// The tracker inner barrel layer 3
   MediumProperties *_theMPTIB3;
   /// The tracker inner barrel layer 4
   MediumProperties *_theMPTIB4;
   /// The tracker outer barrel layer 1
-  MediumProperties *_theMPTOB1;
+  MediumProperties *_theMPSTRIX3;
   /// The tracker outer barrel layer 2
-  MediumProperties *_theMPTOB2;
+  MediumProperties *_theMPSTRIX4;
   /// The tracker outer barrel layer 3
   MediumProperties *_theMPTOB3;
   /// The tracker outer barrel layer 4

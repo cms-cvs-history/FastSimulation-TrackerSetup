@@ -24,8 +24,8 @@ PSet TrackerMaterial = {
     vdouble PXDOutCables1Thickness = { 0.023, 0.034 } # Increase by a third
     vdouble PXDOutCables2Thickness = { 0.085, 0.185 } # Increase by 110%
     // Tracker Inner barrel layers 1-4
-    vdouble TIBLayer1Thickness = { 0.060, 0.053 } # decrease of 10% 
-    vdouble TIBLayer2Thickness = { 0.047, 0.053 } # increase of 15%
+    vdouble STRIXLayer1Thickness = { 0.0222, 0.0217 } 
+    vdouble STRIXLayer2Thickness = { 0.0222, 0.0217 }
     vdouble TIBLayer3Thickness = { 0.035, 0.035 } # no change 
     vdouble TIBLayer4Thickness = { 0.033, 0.040 } # increase of 20%
     // TIB outside services (endcap)
@@ -40,8 +40,8 @@ PSet TrackerMaterial = {
     // TOB inside wall (barrel)
     vdouble TOBInsideThickness = { 0.017, 0.009 } # decrease by a factor 2
     // Tracker Outer barrel layers 1-6
-    vdouble TOBLayer1Thickness = { 0.044, 0.030 } # decrease by 30%
-    vdouble TOBLayer2Thickness = { 0.044, 0.030 } # decrease by 30%
+    vdouble STRIXLayer3Thickness = { 0.0222, 0.0217 } # decrease by 30%
+    vdouble STRIXLayer4Thickness = { 0.0222, 0.0217 } # decrease by 30%
     vdouble TOBLayer3Thickness = { 0.033, 0.022 } # decrease by 30%
     vdouble TOBLayer4Thickness = { 0.033, 0.022 } # decrease by 30% 
     vdouble TOBLayer5Thickness = { 0.033, 0.022 } # decrease by 30%
@@ -69,17 +69,17 @@ PSet TrackerMaterial = {
     vdouble PXB3CablesInnerRadius = { 8.5, 9.0 } # shorten by 5 mm
     // Pixel Barrel Outside walls and cables (endcap)
     vdouble PXBOutCables1InnerRadius = { 11.9, 11.9 } 
-    vdouble PXBOutCables1OuterRadius = { 15.5, 15.5} 
-    vdouble PXBOutCables1ZPosition = { 28.799, 28.799 } # Lengthen by 8 mm 
+    vdouble PXBOutCables1OuterRadius = { 15.5, 15.5 } # Was 15.5, 15.5, MG 
+    vdouble PXBOutCables1ZPosition = { 28.799, 28.799 } # Lengthen by 8 mm
     vdouble PXBOutCables2InnerRadius = { 3.8, 3.8 }
-    vdouble PXBOutCables2OuterRadius = { 16.5, 16.5 }
-    vdouble PXBOutCables2ZPosition = { 28.8, 28.8 }  # Lengthen by 8 mm 
+    vdouble PXBOutCables2OuterRadius = { 16.5, 16.5 } # Was 16.5, 16.5, MG
+    vdouble PXBOutCables2ZPosition = { 28.8, 28.8 }  # Lengthen by 8 mm - Was 28.8, 28.8, MG 
     // Pixel Outside walls and cables (barrel and endcap)
-    vdouble PixelOutCablesRadius = { 17.1, 17.5 } # 4 mm outer
-    vdouble PixelOutCablesLength = { 64.8, 72.0 } 
+    vdouble PixelOutCablesRadius = { 19.1, 19.5 } # 4 mm outer - was 17.1, 17.5, MG
+    vdouble PixelOutCablesLength = { 64.8, 67.17 } 
     vdouble PixelOutCablesInnerRadius = { 3.0, 3.0 } 
-    vdouble PixelOutCablesOuterRadius = { 17.3, 17.61 }  # 3 mm outer
-    vdouble PixelOutCablesZPosition = { 64.9, 72.1 } 
+    vdouble PixelOutCablesOuterRadius = { 19.3, 19.61 }  # 3 mm outer - was 17.3, 17.61, MG
+    vdouble PixelOutCablesZPosition = { 64.9, 67.18 } 
     // Tracker Inner Barrel Outside Cables and walls (endcap)
     vdouble TIBOutCables1InnerRadius = { 22.5, 22.5 } 
     vdouble TIBOutCables1OuterRadius = { 53.9, 53.9 } 
