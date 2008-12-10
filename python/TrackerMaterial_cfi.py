@@ -16,6 +16,13 @@ TrackerMaterialBlock = cms.PSet(
         BeamPipeThickness = cms.vdouble(0.0038, 0.00265, 0.00265), ## decrease by 30%
         # Pixel Barrel Layers 1-3
         PXBThickness = cms.vdouble(0.0222, 0.0217, 0.0217), ## ~ no change
+        # Stacked Pixel Barrel layers 1-6
+        PXBStack1Thickness = cms.vdouble(0.0333, 0.03538, 0.03538), ## Assume 1.5 x Single Pixel Layer
+        PXBStack2Thickness = cms.vdouble(0.0333, 0.03550, 0.03550), ## Assume 1.5 x Single Pixel Layer
+        PXBStack3Thickness = cms.vdouble(0.0333, 0.03344, 0.03344), ## Assume 1.5 x Single Pixel Layer
+        PXBStack4Thickness = cms.vdouble(0.0333, 0.03268, 0.03268), ## Assume 1.5 x Single Pixel Layer
+        PXBStack5Thickness = cms.vdouble(0.0333, 0.03069, 0.03069), ## Assume 1.5 x Single Pixel Layer
+        PXBStack6Thickness = cms.vdouble(0.0333, 0.03152, 0.03152), ## Assume 1.5 x Single Pixel Layer
         # Pixel Barrel services at the end of layers 1-3
         PXB1CablesThickness = cms.vdouble(0.1, 0.042, 0.042), ## divide by ~2
         PXB2CablesThickness = cms.vdouble(0.04, 0.042, 0.042), ## ~ no change
@@ -123,6 +130,7 @@ TrackerMaterialBlock = cms.PSet(
 	106,  # Pixel Barrel services 
 	106,  # Pixel Barrel services 
 	107,  # Pixel endcap services
+	107,  # Pixel endcap services
 	6,    # TIB1 services  
 	7,    # TIB2 services  
 	8,    # TIB3 services  
@@ -203,6 +211,7 @@ TrackerMaterialBlock = cms.PSet(
       	 0.0,  # Pixel Barrel services 
 	27.5,  # Pixel Barrel services 
 	 0.0,  # Pixel endcap services
+	13.0,  # Pixel endcap services
 	35.0,  # TIB1 services  
 	35.0,  # TIB2 services  
 	35.0,  # TIB3 services  
@@ -265,7 +274,7 @@ TrackerMaterialBlock = cms.PSet(
 	32.0,  # TEC Layer 8
 	 0.0,  # TEC Layer 9
 	32.0,  # TEC Layer 9
-       120.0,  # Barrel wall
+       160.0,  # Barrel wall
          4.42, # Endcap Wall : 4.86<eta<4.91
 	 4.65, # Endcap Wall : 4.82<eta<4.86
 	 4.84, # Endcap Wall : 4.40<eta<4.82
@@ -283,6 +292,7 @@ TrackerMaterialBlock = cms.PSet(
 	 27.5,  # Pixel Barrel services 
 	 32.0,  # Pixel Barrel services 
 	 13.0,  # Pixel endcap services
+	 17.5,  # Pixel endcap services
 	 68.0,  # TIB1 services  
 	 68.0,  # TIB2 services  
 	 68.0,  # TIB3 services  
@@ -361,8 +371,9 @@ TrackerMaterialBlock = cms.PSet(
         # Fudge factor on x/X0
         FudgeFactor = cms.vdouble(
 	0.40,  # Pixel Barrel services 
-	2.00,  # Pixel Barrel services 
-	1.60,  # Pixel endcap services
+	1.50,  # Pixel Barrel services 
+	1.00,  # Pixel endcap services
+	0.50,  # Pixel endcap services
 	1.45,  # TIB1 services  
 	1.45,  # TIB2 services  
 	1.45,  # TIB3 services  
@@ -425,7 +436,7 @@ TrackerMaterialBlock = cms.PSet(
 	 0.6,  # TEC Layer 8
 	 3.0,  # TEC Layer 9
 	 0.6,  # TEC Layer 9
-         3.8,  # Barrel wall
+         3.0,  # Barrel wall
         18.74,  # Endcap Wall : 4.86<eta<4.91
 	 4.57,  # Endcap Wall : 4.82<eta<4.86
 	 0.604, # Endcap Wall : 4.40<eta<4.82
