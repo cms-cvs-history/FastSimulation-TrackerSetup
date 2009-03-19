@@ -68,6 +68,17 @@ class TrackerInteractionGeometry
   std::vector<double> beamPipeThickness;
   /// Pixel Barrel Layers 1-3
   std::vector<double> pxbThickness;
+  // Stacked Pixel Barrel layers 1-6
+  std::vector<double> pxbStack1Thickness;
+  std::vector<double> pxbStack2Thickness;
+  std::vector<double> pxbStack3Thickness;
+  std::vector<double> pxbStack4Thickness;
+  std::vector<double> pxbStack5Thickness;
+  std::vector<double> pxbStack6Thickness;
+   std::vector<double> pxbStack7Thickness;
+ std::vector<double> pxbStack8Thickness;
+ std::vector<double> pxbStack9Thickness;
+ std::vector<double> pxbStack10Thickness;
   /// Pixel Barrel services at the end of layers 1-3
   std::vector<double> pxb1CablesThickness;
   std::vector<double> pxb2CablesThickness;
@@ -103,6 +114,10 @@ class TrackerInteractionGeometry
   std::vector<double> tobLayer4Thickness;
   std::vector<double> tobLayer5Thickness;
   std::vector<double> tobLayer6Thickness;
+   std::vector<double> tobLayer7Thickness;
+ std::vector<double> tobLayer8Thickness;
+ std::vector<double> tobLayer9Thickness;
+ std::vector<double> tobLayer10Thickness;
   // TOB services (endcap)
   std::vector<double> tobOutsideThickness;
   // Tracker EndCap disks layers 1-9
@@ -171,6 +186,17 @@ class TrackerInteractionGeometry
   MediumProperties *_theMPBeamPipe;
   /// The barrel pixel layers
   MediumProperties *_theMPPixelBarrel;
+  // The Stacked Pixel Barrel layers
+  MediumProperties *_theMPPixelBarrelS1;
+  MediumProperties *_theMPPixelBarrelS2;
+  MediumProperties *_theMPPixelBarrelS3;
+  MediumProperties *_theMPPixelBarrelS4;
+  MediumProperties *_theMPPixelBarrelS5;
+  MediumProperties *_theMPPixelBarrelS6;
+ MediumProperties *_theMPPixelBarrelS7;
+ MediumProperties *_theMPPixelBarrelS8;
+ MediumProperties *_theMPPixelBarrelS9;
+ MediumProperties *_theMPPixelBarrelS10;
   /// The endcap pixel layers
   MediumProperties *_theMPPixelEndcap;
   /// A series of cables/walls to reproduce the full sim
@@ -201,6 +227,11 @@ class TrackerInteractionGeometry
   MediumProperties *_theMPTOB5;
   /// The tracker outer barrel layer 6
   MediumProperties *_theMPTOB6;
+   /// The tracker outer barrel layer 7
+  MediumProperties *_theMPTOB7;
+ MediumProperties *_theMPTOB8;
+ MediumProperties *_theMPTOB9;
+ MediumProperties *_theMPTOB10;
   /// The Tracker EndCap layers
   MediumProperties *_theMPEndcap;
   /// The tracker inner disks
