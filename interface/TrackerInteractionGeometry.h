@@ -25,7 +25,7 @@ class TrackerInteractionGeometry
 
  public:
 
-  enum FirstCylinders { PXB=0,PXD=3,TIB=5,TID=9,TOB=12,TEC=18 };
+  enum FirstCylinders { PXB=0,PXD=10,TIB=5,TID=9,TOB=20,TEC=30 };
 
   /// Constructor : get the configurable parameters
   TrackerInteractionGeometry(const edm::ParameterSet& trackerMaterial,
@@ -68,6 +68,10 @@ class TrackerInteractionGeometry
   std::vector<double> beamPipeThickness;
   /// Pixel Barrel Layers 1-3
   std::vector<double> pxbThickness;
+  std::vector<double> pxb4Thickness;
+  // Stacked Pixel Barrel layers 1-6
+  std::vector<double> pxbStack1Thickness;
+  std::vector<double> pxbStack2Thickness;
   /// Pixel Barrel services at the end of layers 1-3
   std::vector<double> pxb1CablesThickness;
   std::vector<double> pxb2CablesThickness;
@@ -171,6 +175,10 @@ class TrackerInteractionGeometry
   MediumProperties *_theMPBeamPipe;
   /// The barrel pixel layers
   MediumProperties *_theMPPixelBarrel;
+  MediumProperties *_theMPPixelBarrel4;
+  // The Stacked Pixel Barrel layers
+  MediumProperties *_theMPPixelBarrelS1;
+  MediumProperties *_theMPPixelBarrelS2;
   /// The endcap pixel layers
   MediumProperties *_theMPPixelEndcap;
   /// A series of cables/walls to reproduce the full sim
