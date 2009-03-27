@@ -25,8 +25,6 @@ class TrackerInteractionGeometry
 
  public:
 
-  enum FirstCylinders { PXB=0,PXD=3,TIB=5,TID=9,TOB=12,TEC=18 };
-
   /// Constructor : get the configurable parameters
   TrackerInteractionGeometry(const edm::ParameterSet& trackerMaterial,
 			     const GeometricSearchTracker* geomSearchTracker);
@@ -81,9 +79,8 @@ class TrackerInteractionGeometry
   std::vector<double> pxdOutCables1Thickness;
   std::vector<double> pxdOutCables2Thickness;
   /// Tracker Inner barrel layers 1-4
-  std::vector<double> tibLayer1Thickness;
-  std::vector<double> tibLayer2Thickness;
-  std::vector<double> tibLayer3Thickness;
+  std::vector<double> strixelLayer1Thickness;
+  std::vector<double> strixelLayer2Thickness;
   std::vector<double> tibLayer4Thickness;
   /// TIB outside services (endcap)
   std::vector<double> tibOutCables1Thickness;
@@ -100,7 +97,6 @@ class TrackerInteractionGeometry
   std::vector<double> tobLayer1Thickness;
   std::vector<double> tobLayer2Thickness;
   std::vector<double> tobLayer3Thickness;
-  std::vector<double> tobLayer4Thickness;
   std::vector<double> tobLayer5Thickness;
   std::vector<double> tobLayer6Thickness;
   // TOB services (endcap)
@@ -182,11 +178,9 @@ class TrackerInteractionGeometry
   MediumProperties *_theMPPixelOutside5;
   MediumProperties *_theMPPixelOutside6;
   /// The tracker inner barrel layer 1
-  MediumProperties *_theMPTIB1;
+  MediumProperties *_theMPSTRIX1;
   /// The tracker inner barrel layer 2
-  MediumProperties *_theMPTIB2;
-  /// The tracker inner barrel layer 3
-  MediumProperties *_theMPTIB3;
+  MediumProperties *_theMPSTRIX2;
   /// The tracker inner barrel layer 4
   MediumProperties *_theMPTIB4;
   /// The tracker outer barrel layer 1
@@ -195,8 +189,6 @@ class TrackerInteractionGeometry
   MediumProperties *_theMPTOB2;
   /// The tracker outer barrel layer 3
   MediumProperties *_theMPTOB3;
-  /// The tracker outer barrel layer 4
-  MediumProperties *_theMPTOB4;
   /// The tracker outer barrel layer 5
   MediumProperties *_theMPTOB5;
   /// The tracker outer barrel layer 6

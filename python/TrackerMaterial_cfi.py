@@ -29,9 +29,8 @@ TrackerMaterialBlock = cms.PSet(
         PXDOutCables1Thickness = cms.vdouble(0.023, 0.034, 0.034), ## Increase by a third
         PXDOutCables2Thickness = cms.vdouble(0.085, 0.185, 0.185), ## Increase by 110%
         # Tracker Inner barrel layers 1-4
-        TIBLayer1Thickness = cms.vdouble(0.06, 0.053, 0.053), ## decrease of 10%
-        TIBLayer2Thickness = cms.vdouble(0.047, 0.053, 0.053), ## increase of 15%
-        TIBLayer3Thickness = cms.vdouble(0.035, 0.035, 0.035), ## no change
+        STRIXLayer1Thickness = cms.vdouble(0.0222, 0.0217, 0.053), ## decrease of 10%
+        STRIXLayer2Thickness = cms.vdouble(0.0222, 0.0217, 0.053), ## increase of 15%
         TIBLayer4Thickness = cms.vdouble(0.033, 0.04, 0.04), ## increase of 20%
         # TIB outside services (endcap)
         TIBOutCables1Thickness = cms.vdouble(0.04, 0.108, 0.108), ## Put everything in one layer
@@ -45,10 +44,9 @@ TrackerMaterialBlock = cms.PSet(
         # TOB inside wall (barrel)
         TOBInsideThickness = cms.vdouble(0.017, 0.009, 0.009), ## decrease by a factor 2
         # Tracker Outer barrel layers 1-6
-        TOBLayer1Thickness = cms.vdouble(0.044, 0.03, 0.03), ## decrease by 30%
-        TOBLayer2Thickness = cms.vdouble(0.044, 0.03, 0.03), ## decrease by 30%
+        TOBLayer1Thickness = cms.vdouble(0.033, 0.022, 0.022), ## decrease by 30%
+        TOBLayer2Thickness = cms.vdouble(0.033, 0.022, 0.022), ## decrease by 30%
         TOBLayer3Thickness = cms.vdouble(0.033, 0.022, 0.022), ## decrease by 30%
-        TOBLayer4Thickness = cms.vdouble(0.033, 0.022, 0.022), ## decrease by 30%
         TOBLayer5Thickness = cms.vdouble(0.033, 0.022, 0.022), ## decrease by 30%
         TOBLayer6Thickness = cms.vdouble(0.033, 0.022, 0.022), ## decrease by 30%
         # TOB services (endcap)
@@ -79,11 +77,11 @@ TrackerMaterialBlock = cms.PSet(
         PXBOutCables2OuterRadius = cms.vdouble(16.5, 16.5, 16.5),
         PXBOutCables2ZPosition = cms.vdouble(28.0, 28.8, 28.8), ## Lengthen by 8 mm
         # Pixel Outside walls and cables (barrel and endcap)
-        PixelOutCablesRadius = cms.vdouble(17.1, 17.5, 17.5), ## 4mm outer
-        PixelOutCablesLength = cms.vdouble(64.8, 72.0, 72.0),
+        PixelOutCablesRadius = cms.vdouble(19.1, 19.5, 19.5), ## 4mm outer - was 17.1, 17.5, 17.5, MG
+        PixelOutCablesLength = cms.vdouble(64.8, 67.17, 67.17), ## was 64.8, 72.0, 72.0, MG
         PixelOutCablesInnerRadius = cms.vdouble(3.0, 3.0, 7.197), ## Stop tbis disk at eta = 3.0
-        PixelOutCablesOuterRadius = cms.vdouble(17.3, 17.61, 17.61), ## 3 mm outer
-        PixelOutCablesZPosition = cms.vdouble(64.9, 72.1, 72.1),
+        PixelOutCablesOuterRadius = cms.vdouble(19.3, 19.61, 19.61), ## 3 mm outer - was 17.3, 17.61, 17.61
+        PixelOutCablesZPosition = cms.vdouble(64.9, 67.18, 67.18), ## was 64.9, 72.1, 72.1, MG
         # Tracker Inner Barrel Outside Cables and walls (endcap)
         TIBOutCables1InnerRadius = cms.vdouble(22.5, 22.5, 22.5),
         TIBOutCables1OuterRadius = cms.vdouble(53.9, 53.9, 53.9),
@@ -125,7 +123,7 @@ TrackerMaterialBlock = cms.PSet(
 	107,  # Pixel endcap services
 	6,    # TIB1 services  
 	7,    # TIB2 services  
-	8,    # TIB3 services  
+	0,    # MG - Was: 8 - Now 8 is the third pixel disk
 	9,    # TIB4 services  
 	10,   # TID Layer 1
 	11,   # TID Layer 2
