@@ -538,6 +538,21 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   else
     delete theCylinder;
 
+  // Fourth pixel barrel.
+  // NOTE: No fudge factors are added to the vector in TrackerMaterial_cfi.py 
+  // so the methods fudgeFactors(layerNr), fudgeMin(layerNr) and fudgeMax(layerNr)
+  // all return a void vector
+  // (this is the default for all the other pixel sensitive layers)
+  layerNr = 28;
+  theCylinder = new BoundCylinder(thePosition,theRotation,PIXB4);
+  theCylinder->setMediumProperties(_theMPPixelBarrel);
+  if ( theCylinder->mediumProperties()->radLen() > 0. ) 
+    _theCylinders.push_back(TrackerLayer(theCylinder,false,layerNr,
+                                         minDim(layerNr),maxDim(layerNr),
+                                         fudgeFactors(layerNr)));
+  else
+    delete theCylinder;
+
   layerNr = 104;
   theDisk = new BoundDisk(PPIXBOut4,theRotation2,PIXBOut4);
   theDisk->setMediumProperties(_theMPPixelOutside4);
@@ -567,21 +582,6 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
 					 fudgeFactors(layerNr)));
   else
     delete theDisk;
-
-  // Fourth pixel barrel.
-  // NOTE: No fudge factors are added to the vector in TrackerMaterial_cfi.py 
-  // so the methods fudgeFactors(layerNr), fudgeMin(layerNr) and fudgeMax(layerNr)
-  // all return a void vector
-  // (this is the default for all the other pixel sensitive layers)
-  layerNr = 28;
-  theCylinder = new BoundCylinder(thePosition,theRotation,PIXB4);
-  theCylinder->setMediumProperties(_theMPPixelBarrel);
-  if ( theCylinder->mediumProperties()->radLen() > 0. ) 
-    _theCylinders.push_back(TrackerLayer(theCylinder,false,layerNr,
-					 minDim(layerNr),maxDim(layerNr),
-					 fudgeFactors(layerNr)));
-  else
-    delete theCylinder;
 
   layerNr = 5;
   theDisk = new BoundDisk(PPIXD2,theRotation2,PIXD2);

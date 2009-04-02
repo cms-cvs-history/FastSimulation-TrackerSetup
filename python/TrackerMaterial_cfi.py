@@ -71,7 +71,7 @@ TrackerMaterialBlock = cms.PSet(
         PXB3CablesInnerRadius = cms.vdouble(8.5, 9.0, 9.0), ## shorten by 5 mm
         # Pixel Barrel Outside walls and cables (endcap)
         PXBOutCables1InnerRadius = cms.vdouble(11.9, 11.9, 11.9),
-        PXBOutCables1OuterRadius = cms.vdouble(15.5, 15.5, 15.5),
+        PXBOutCables1OuterRadius = cms.vdouble(16.0, 16.0, 16.0), ## Was 15.5, 15.5, 15.5 - lenghtened for the 4th pixel layer, MG
         PXBOutCables1ZPosition = cms.vdouble(27.999, 28.799, 28.799), ## Lengthen by 8 mm
         PXBOutCables2InnerRadius = cms.vdouble(3.8, 3.8, 3.8),
         PXBOutCables2OuterRadius = cms.vdouble(16.5, 16.5, 16.5),
