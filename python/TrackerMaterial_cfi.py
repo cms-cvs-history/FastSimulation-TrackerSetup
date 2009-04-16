@@ -80,17 +80,17 @@ TrackerMaterialBlock = cms.PSet(
         PXB3CablesInnerRadius = cms.vdouble(8.5, 9.0, 9.0), ## shorten by 5 mm
         # Pixel Barrel Outside walls and cables (endcap)
         PXBOutCables1InnerRadius = cms.vdouble(11.9, 11.9, 11.9),
-        PXBOutCables1OuterRadius = cms.vdouble(15.5, 15.5, 15.5),
+        PXBOutCables1OuterRadius = cms.vdouble(16.0, 16.0, 16.0), ## Was 15.5, 15.5, 15.5 - lengthened for 4th pixel layer (as MG in strawman A)
         PXBOutCables1ZPosition = cms.vdouble(27.999, 28.799, 28.799), ## Lengthen by 8 mm
         PXBOutCables2InnerRadius = cms.vdouble(3.8, 3.8, 3.8),
         PXBOutCables2OuterRadius = cms.vdouble(16.5, 16.5, 16.5),
         PXBOutCables2ZPosition = cms.vdouble(28.0, 28.8, 28.8), ## Lengthen by 8 mm
         # Pixel Outside walls and cables (barrel and endcap)
-        PixelOutCablesRadius = cms.vdouble(17.1, 17.5, 17.5), ## 4mm outer
-        PixelOutCablesLength = cms.vdouble(64.8, 72.0, 72.0),
+        PixelOutCablesRadius = cms.vdouble(19.1, 19.5, 19.5), ## 4mm outer - was 17.1, 17.5, 17.5, (as MG in strawman A)
+        PixelOutCablesLength = cms.vdouble(64.8, 67.17, 67.17), ## was 64.8, 72.0, 72.0, (as MG in strawman A)
         PixelOutCablesInnerRadius = cms.vdouble(3.0, 3.0, 7.197), ## Stop tbis disk at eta = 3.0
-        PixelOutCablesOuterRadius = cms.vdouble(17.3, 17.61, 17.61), ## 3 mm outer
-        PixelOutCablesZPosition = cms.vdouble(64.9, 72.1, 72.1),
+        PixelOutCablesOuterRadius = cms.vdouble(19.3, 19.61, 19.61), ## 3 mm outer - was 17.3, 17.61, 17.61 (as MG in strawman A)
+        PixelOutCablesZPosition = cms.vdouble(64.9, 67.18, 67.18), ## was 64.9, 72.1, 72.1, (as MG in strawman A)
         # Tracker Inner Barrel Outside Cables and walls (endcap)
         TIBOutCables1InnerRadius = cms.vdouble(22.5, 22.5, 22.5),
         TIBOutCables1OuterRadius = cms.vdouble(53.9, 53.9, 53.9),
