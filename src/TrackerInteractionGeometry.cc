@@ -37,7 +37,6 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   beamPipeThickness = trackerMaterial.getParameter<std::vector<double> >("BeamPipeThickness");
   // Pixel Barrel Layers 1-3
   pxbThickness = trackerMaterial.getParameter<std::vector<double> >("PXBThickness");
-  pxb4Thickness = trackerMaterial.getParameter<std::vector<double> >("PXB4Thickness");
   // Stacked Pixel Layers 1-6
   pxbStack1Thickness = trackerMaterial.getParameter<std::vector<double> >("PXBStack1Thickness");
   pxbStack2Thickness = trackerMaterial.getParameter<std::vector<double> >("PXBStack2Thickness");
@@ -160,7 +159,6 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   _theMPBeamPipe = new MediumProperties(beamPipeThickness[version],0.0001);  
   // The pixel barrel layers
   _theMPPixelBarrel = new MediumProperties(pxbThickness[version],0.0001);  
-  _theMPPixelBarrel4 = new MediumProperties(pxb4Thickness[version],0.0001);  
   // The Stacked Pixel Barrel Layers
   _theMPPixelBarrelS1 = new MediumProperties(pxbStack1Thickness[version],0.0001);
   _theMPPixelBarrelS2 = new MediumProperties(pxbStack2Thickness[version],0.0001);
@@ -265,11 +263,11 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   maxLength = std::max( (**bl).specificSurface().bounds().length()/2.+1.7, maxLength+0.000 );
   const SimpleCylinderBounds  PIXB3( maxRadius-0.005, maxRadius+0.005, -maxLength, +maxLength);
 
-  bl++;
+  // Fourth  pixel barrel layer: r=14.5504, l=53.38
+  ++bl;
+  maxLength = std::max( (**bl).specificSurface().bounds().length()/2.+0.0, maxLength+0.000 );
   maxRadius = (**bl).specificSurface().radius();
-  // Fourth pixel barrel layer: r=18  , l=80
-  maxLength = std::max( (**bl).specificSurface().bounds().length()/2.+1.7, maxLength+0.000 );
-  const SimpleCylinderBounds  PIXB4( maxRadius-0.005, maxRadius+0.005, -maxLength-20.1, +maxLength+20.1);
+  const SimpleCylinderBounds  PIXB4( maxRadius-0.005, maxRadius+0.005, -maxLength, +maxLength);
 
   bl++;
   // Stack 1 pixel barrel layer
@@ -387,13 +385,13 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   // Second Pixel disk: Z pos 48.5 radii 5.42078, 16.0756
   ++fl;
   innerRadius = (**fl).specificSurface().innerRadius()-1.0;
-  outerRadius = std::max( (**fl).specificSurface().outerRadius()+2.0, outerRadius+0.000 );
+  outerRadius = std::max( (**fl).specificSurface().outerRadius()+4.0, outerRadius+0.000 );
   const SimpleDiskBounds PIXD2(innerRadius, outerRadius,-0.0150,+0.0150);
   const Surface::PositionType PPIXD2(0.0,0.0,(**fl).surface().position().z()); 
-  // Third Pixel disk: Z pos 61.5 radii 5.42078, 16.0756
-  ++fl;
+  // Third Pixel disk: Z pos 61.5 radii 5.82585, 14.5978
+  ++fl; 
   innerRadius = (**fl).specificSurface().innerRadius()-1.0;
-  outerRadius = std::max( (**fl).specificSurface().outerRadius()+2.0, outerRadius+0.000 );
+  outerRadius = std::max( (**fl).specificSurface().outerRadius()+4.0, outerRadius+0.000 );
   const SimpleDiskBounds PIXD3(innerRadius, outerRadius,-0.0150,+0.0150);
   const Surface::PositionType PPIXD3(0.0,0.0,(**fl).surface().position().z());
 
@@ -570,6 +568,21 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   else
     delete theCylinder;
 
+  // Fourth pixel barrel. (note the order!)
+  // NOTE: No fudge factors are added to the vector in TrackerMaterial_cfi.py
+  // so the methods fudgeFactors(layerNr), fudgeMin(layerNr) and fudgeMax(layerNr)
+  // all return a void vector
+  // (this is the default for all the other pixel sensitive layers)
+  layerNr = TrackerInteractionGeometry::PXB+4;
+  theCylinder = new BoundCylinder(thePosition,theRotation,PIXB4);
+  theCylinder->setMediumProperties(_theMPPixelBarrel);
+  if ( theCylinder->mediumProperties()->radLen() > 0. )
+    _theCylinders.push_back(TrackerLayer(theCylinder,false,layerNr,
+                                         minDim(layerNr),maxDim(layerNr),
+                                         fudgeFactors(layerNr)));
+  else
+    delete theCylinder;
+
   layerNr = 104;
   theDisk = new BoundDisk(PPIXBOut4,theRotation2,PIXBOut4);
   theDisk->setMediumProperties(_theMPPixelOutside4);
@@ -610,25 +623,20 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   else
     delete theDisk;
 
+  // Third pixel disk.
+  // NOTE: No fudge factors are added to the vector in TrackerMaterial_cfi.py
+  // so the methods fudgeFactors(layerNr), fudgeMin(layerNr) and fudgeMax(layerNr)
+  // all return a void vector
+  // (this is the default for all the other pixel sensitive layers)
   layerNr = TrackerInteractionGeometry::PXD+3;
   theDisk = new BoundDisk(PPIXD3,theRotation2,PIXD3);
   theDisk->setMediumProperties(_theMPPixelEndcap);
-  if ( theDisk->mediumProperties()->radLen() > 0. ) 
+  if ( theDisk->mediumProperties()->radLen() > 0. )
     _theCylinders.push_back(TrackerLayer(theDisk,true,layerNr,
-					 minDim(layerNr),maxDim(layerNr),
-					 fudgeFactors(layerNr)));
+                                         minDim(layerNr),maxDim(layerNr),
+                                         fudgeFactors(layerNr)));
   else
     delete theDisk;
-
-  layerNr = TrackerInteractionGeometry::PXB+4;
-  theCylinder = new BoundCylinder(thePosition,theRotation,PIXB4);
-  theCylinder->setMediumProperties(_theMPPixelBarrel4);
-  if ( theCylinder->mediumProperties()->radLen() > 0. ) 
-    _theCylinders.push_back(TrackerLayer(theCylinder,false,layerNr,
-					 minDim(layerNr),maxDim(layerNr),
-					 fudgeFactors(layerNr)));
-  else
-    delete theCylinder;
 
   layerNr = 106;
   theCylinder = new BoundCylinder(thePosition,theRotation,PIXBOut5);
@@ -971,7 +979,6 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   else
     delete theCylinder;
   
-  
   layerNr = 114;
   theDisk = new BoundDisk(PTEOut,theRotation2,TEOut);
   theDisk->setMediumProperties(_theMPEndcapOutside);
@@ -992,10 +999,11 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   else
     delete theDisk;
   
-  /*
+  /*  (kludge put into tracing routine to due to non-nested cylinders)
   // Check overall compatibility of cylinder dimensions
   // (must be nested cylinders)
   // Throw an exception if the test fails
+*/
   double zin, rin;
   double zout, rout;
   unsigned nCyl=0;
@@ -1008,6 +1016,12 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
     zin = cyliterOut->cylinder()->bounds().length()/2.;
     rin = cyliterOut->cylinder()->bounds().width()/2.;
   }
+      std::cout << " Cylinder number " << nCyl 
+		<< " (Active Layer Number = " <<  cyliterOut->layerNumber() 
+		<< " Forward ? " <<  cyliterOut->forward() << " ) "
+		<< " has dimensions of : " 
+		<< " zin = " << zin << "; " 
+		<< " rin = " << rin << std::endl;
   // Go to the next cylinder
   ++cyliterOut;
   // And loop over all cylinders
@@ -1022,15 +1036,15 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
     }
 
     nCyl++;
-    if ( zout < zin || rout < rin ) { 
-      throw cms::Exception("FastSimulation/TrackerInteractionGeometry ") 
-	<< " WARNING with cylinder number " << nCyl 
-	<< " (Active Layer Number = " <<  cyliterOut->layerNumber() 
-	<< " Forward ? " <<  cyliterOut->forward() << " ) "
-	<< " has dimensions smaller than previous cylinder : " << std::endl
-	<< " zout/zin = " << zout << " " << zin << std::endl
-	<< " rout/rin = " << rout << " " << rin << std::endl;
-    } else {
+//    if ( zout < zin || rout < rin ) { 
+//      throw cms::Exception("FastSimulation/TrackerInteractionGeometry ") 
+//	<< " WARNING with cylinder number " << nCyl 
+//	<< " (Active Layer Number = " <<  cyliterOut->layerNumber() 
+//	<< " Forward ? " <<  cyliterOut->forward() << " ) "
+//	<< " has dimensions smaller than previous cylinder : " << std::endl
+//	<< " zout/zin = " << zout << " " << zin << std::endl
+//	<< " rout/rin = " << rout << " " << rin << std::endl;
+//    } else {
         
       std::cout << " Cylinder number " << nCyl 
 		<< " (Active Layer Number = " <<  cyliterOut->layerNumber() 
@@ -1039,7 +1053,7 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
 		<< " zout = " << zout << "; " 
 		<< " rout = " << rout << std::endl;
         
-    }
+//    }
     // Go to the next cylinder
     cyliterOut++;
     // Inner cylinder becomes outer cylinder
@@ -1047,7 +1061,7 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
     rin = rout;
     // End test
   }
- */ 
+// */ 
 }
 
 std::vector<double>
@@ -1089,7 +1103,6 @@ TrackerInteractionGeometry::~TrackerInteractionGeometry()
   delete _theMPBeamPipe;
   // The pixel barrel layers
   delete _theMPPixelBarrel;
-  delete _theMPPixelBarrel4;
   // The Stacked Pixel Barrel layers
   delete _theMPPixelBarrelS1;
   delete _theMPPixelBarrelS2;
