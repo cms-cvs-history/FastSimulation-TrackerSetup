@@ -25,7 +25,8 @@ class TrackerInteractionGeometry
 
  public:
 
-  enum FirstCylinders { PXB=0,PXD=3,TIB=5,TID=9,TOB=12,TEC=18 };
+  // put phase 1 layers after stanadCMS to avoid changing other code (fudge factors)
+  enum FirstCylinders { PXB=0,PXD=3,TIB=5,TID=9,TOB=12,TEC=18,PXEXTRA=27 };
 
   /// Constructor : get the configurable parameters
   TrackerInteractionGeometry(const edm::ParameterSet& trackerMaterial,
@@ -68,6 +69,7 @@ class TrackerInteractionGeometry
   std::vector<double> beamPipeThickness;
   /// Pixel Barrel Layers 1-3
   std::vector<double> pxbThickness;
+  std::vector<double> pxb4Thickness; // in case we need to be different
   /// Pixel Barrel services at the end of layers 1-3
   std::vector<double> pxb1CablesThickness;
   std::vector<double> pxb2CablesThickness;

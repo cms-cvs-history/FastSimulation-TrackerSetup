@@ -257,6 +257,12 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   maxLength = std::max( (**bl).specificSurface().bounds().length()/2.+1.7, maxLength+0.000 );
   const SimpleCylinderBounds  PIXB3( maxRadius-0.005, maxRadius+0.005, -maxLength, +maxLength);
 
+  // Fourth  pixel barrel layer: r=14.5504, l=53.38
+  ++bl;
+  maxLength = std::max( (**bl).specificSurface().bounds().length()/2.+0.0, maxLength+0.000 );
+  maxRadius = (**bl).specificSurface().radius();
+  const SimpleCylinderBounds  PIXB4( maxRadius-0.005, maxRadius+0.005, -maxLength, +maxLength);
+
   // Pixel Barrel Outside walls and cables
   const SimpleDiskBounds PIXBOut4( pxbOutCables1InnerRadius[version],pxbOutCables1OuterRadius[version],-0.5,0.5);
   const Surface::PositionType PPIXBOut4(0.0,0.0,pxbOutCables1ZPosition[version]);
@@ -348,17 +354,32 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   std::vector< ForwardDetLayer*>::const_iterator fl = posForwardLayers.begin();
 
   // Pixel disks 
-  // First Pixel disk: Z pos 35.5 radii 5.42078, 16.0756
+  // First Pixel disk: Z pos ??.? radii ??.?078, ??.?756
   double innerRadius = (**fl).specificSurface().innerRadius()-1.0;
   double outerRadius = (**fl).specificSurface().outerRadius()+2.0;
   const SimpleDiskBounds PIXD1(innerRadius, outerRadius,-0.0150,+0.0150);
   const Surface::PositionType PPIXD1(0.0,0.0,(**fl).surface().position().z()); 
-  // Second Pixel disk: Z pos 48.5 radii 5.42078, 16.0756
+int mycnt = 0;
+std::cout << "fpix " << mycnt << " rin, rout, z = " << (**fl).specificSurface().innerRadius() << " "
+          << (**fl).specificSurface().outerRadius() << " " << (**fl).surface().position().z() << std::endl;
+  // Second Pixel disk: Z pos ??.? radii ??.?078, ??.?756
   ++fl;
   innerRadius = (**fl).specificSurface().innerRadius()-1.0;
   outerRadius = std::max( (**fl).specificSurface().outerRadius()+2.0, outerRadius+0.000 );
   const SimpleDiskBounds PIXD2(innerRadius, outerRadius,-0.0150,+0.0150);
   const Surface::PositionType PPIXD2(0.0,0.0,(**fl).surface().position().z()); 
+++mycnt;
+std::cout << "fpix " << mycnt << " rin, rout, z = " << (**fl).specificSurface().innerRadius() << " "
+          << (**fl).specificSurface().outerRadius() << " " << (**fl).surface().position().z() << std::endl;
+  // Third Pixel disk: 
+  ++fl;
+  innerRadius = (**fl).specificSurface().innerRadius()-1.0;
+  outerRadius = std::max( (**fl).specificSurface().outerRadius()+2.0, outerRadius+0.000 );
+  const SimpleDiskBounds PIXD3(innerRadius, outerRadius,-0.0150,+0.0150);
+  const Surface::PositionType PPIXD3(0.0,0.0,(**fl).surface().position().z()); 
+++mycnt;
+std::cout << "fpix " << mycnt << " rin, rout, z = " << (**fl).specificSurface().innerRadius() << " "
+          << (**fl).specificSurface().outerRadius() << " " << (**fl).surface().position().z() << std::endl;
 
   // Tracker Inner disks (add 3 cm for the outer radius to simulate cables, 
   // and remove 1cm to inner radius to allow for some extrapolation margin)
@@ -368,12 +389,18 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   outerRadius = (**fl).specificSurface().outerRadius()+3.5;
   const SimpleDiskBounds TID1(innerRadius,outerRadius,-0.0150,+0.0150);
   const Surface::PositionType PTID1(0.,0.,(**fl).surface().position().z()); 
+++mycnt;
+std::cout << "tid  " << mycnt << " rin, rout, z = " << (**fl).specificSurface().innerRadius() << " "
+          << (**fl).specificSurface().outerRadius() << " " << (**fl).surface().position().z() << std::endl;
   // Second TID : Z pos 90.445 radii 23.14, 50.4337
   ++fl;
   innerRadius = (**fl).specificSurface().innerRadius()-0.5;
   outerRadius = std::max( (**fl).specificSurface().outerRadius()+3.5, outerRadius+0.000);
   const SimpleDiskBounds TID2(innerRadius,outerRadius,-0.0150,+0.0150);
   const Surface::PositionType PTID2(0.,0.,(**fl).surface().position().z()); 
+++mycnt;
+std::cout << "tid  " << mycnt << " rin, rout, z = " << (**fl).specificSurface().innerRadius() << " "
+          << (**fl).specificSurface().outerRadius() << " " << (**fl).surface().position().z() << std::endl;
   // Third TID : Z pos 105.445 radii 23.14, 50.4337
   ++fl;
   innerRadius = (**fl).specificSurface().innerRadius()-0.5;
@@ -530,6 +557,21 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   else
     delete theCylinder;
 
+  // Fourth pixel barrel. (note the order!)
+  // NOTE: No fudge factors are added to the vector in TrackerMaterial_cfi.py
+  // so the methods fudgeFactors(layerNr), fudgeMin(layerNr) and fudgeMax(layerNr)
+  // all return a void vector
+  // (this is the default for all the other pixel sensitive layers)
+  layerNr = TrackerInteractionGeometry::PXEXTRA+1;
+  theCylinder = new BoundCylinder(thePosition,theRotation,PIXB4);
+  theCylinder->setMediumProperties(_theMPPixelBarrel);
+  if ( theCylinder->mediumProperties()->radLen() > 0. )
+    _theCylinders.push_back(TrackerLayer(theCylinder,false,layerNr,
+                                         minDim(layerNr),maxDim(layerNr),
+                                         fudgeFactors(layerNr)));
+  else
+    delete theCylinder;
+
   layerNr = 104;
   theDisk = new BoundDisk(PPIXBOut4,theRotation2,PIXBOut4);
   theDisk->setMediumProperties(_theMPPixelOutside4);
@@ -562,6 +604,16 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
 
   layerNr = TrackerInteractionGeometry::PXD+2;
   theDisk = new BoundDisk(PPIXD2,theRotation2,PIXD2);
+  theDisk->setMediumProperties(_theMPPixelEndcap);
+  if ( theDisk->mediumProperties()->radLen() > 0. ) 
+    _theCylinders.push_back(TrackerLayer(theDisk,true,layerNr,
+					 minDim(layerNr),maxDim(layerNr),
+					 fudgeFactors(layerNr)));
+  else
+    delete theDisk;
+
+  layerNr = TrackerInteractionGeometry::PXEXTRA+2;
+  theDisk = new BoundDisk(PPIXD3,theRotation2,PIXD3);
   theDisk->setMediumProperties(_theMPPixelEndcap);
   if ( theDisk->mediumProperties()->radLen() > 0. ) 
     _theCylinders.push_back(TrackerLayer(theDisk,true,layerNr,
@@ -941,14 +993,14 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
 	<< " zout/zin = " << zout << " " << zin << std::endl
 	<< " rout/rin = " << rout << " " << rin << std::endl;
     } else {
-      /*
+//      /*
       std::cout << " Cylinder number " << nCyl 
 		<< " (Active Layer Number = " <<  cyliterOut->layerNumber() 
 		<< " Forward ? " <<  cyliterOut->forward() << " ) "
 		<< " has dimensions of : " 
 		<< " zout = " << zout << "; " 
 		<< " rout = " << rout << std::endl;
-      */
+//      */
     }
     // Go to the next cylinder
     cyliterOut++;

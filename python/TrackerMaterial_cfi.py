@@ -16,6 +16,7 @@ TrackerMaterialBlock = cms.PSet(
         BeamPipeThickness = cms.vdouble(0.0038, 0.00265, 0.00265), ## decrease by 30%
         # Pixel Barrel Layers 1-3
         PXBThickness = cms.vdouble(0.0222, 0.0217, 0.0217), ## ~ no change
+        PXB4Thickness = cms.vdouble(0.0222, 0.0217, 0.0217), ## same as layers 1-3 (Si only though)
         # Pixel Barrel services at the end of layers 1-3
         PXB1CablesThickness = cms.vdouble(0.1, 0.042, 0.042), ## divide by ~2
         PXB2CablesThickness = cms.vdouble(0.04, 0.042, 0.042), ## ~ no change
@@ -73,17 +74,17 @@ TrackerMaterialBlock = cms.PSet(
         PXB3CablesInnerRadius = cms.vdouble(8.5, 9.0, 9.0), ## shorten by 5 mm
         # Pixel Barrel Outside walls and cables (endcap)
         PXBOutCables1InnerRadius = cms.vdouble(11.9, 11.9, 11.9),
-        PXBOutCables1OuterRadius = cms.vdouble(15.5, 15.5, 15.5),
+        PXBOutCables1OuterRadius = cms.vdouble(16.0, 16.0, 16.0), ## Was 15.5, 15.5, 15.5 - lengthened for 4th pixel layer
         PXBOutCables1ZPosition = cms.vdouble(27.999, 28.799, 28.799), ## Lengthen by 8 mm
         PXBOutCables2InnerRadius = cms.vdouble(3.8, 3.8, 3.8),
         PXBOutCables2OuterRadius = cms.vdouble(16.5, 16.5, 16.5),
         PXBOutCables2ZPosition = cms.vdouble(28.0, 28.8, 28.8), ## Lengthen by 8 mm
         # Pixel Outside walls and cables (barrel and endcap)
-        PixelOutCablesRadius = cms.vdouble(17.1, 17.5, 17.5), ## 4mm outer
-        PixelOutCablesLength = cms.vdouble(64.8, 72.0, 72.0),
+        PixelOutCablesRadius = cms.vdouble(19.1, 19.5, 19.5), ## 4mm outer - was 17.1, 17.5, 17.5
+        PixelOutCablesLength = cms.vdouble(64.8, 67.17, 67.17), ## was 64.8, 72.0, 72.0
         PixelOutCablesInnerRadius = cms.vdouble(3.0, 3.0, 7.197), ## Stop tbis disk at eta = 3.0
-        PixelOutCablesOuterRadius = cms.vdouble(17.3, 17.61, 17.61), ## 3 mm outer
-        PixelOutCablesZPosition = cms.vdouble(64.9, 72.1, 72.1),
+        PixelOutCablesOuterRadius = cms.vdouble(19.3, 19.61, 19.61), ## 3 mm outer - was 17.3, 17.61, 17.61
+        PixelOutCablesZPosition = cms.vdouble(64.9, 67.18, 67.18), ## was 64.9, 72.1, 72.1
         # Tracker Inner Barrel Outside Cables and walls (endcap)
         TIBOutCables1InnerRadius = cms.vdouble(22.5, 22.5, 22.5),
         TIBOutCables1OuterRadius = cms.vdouble(53.9, 53.9, 53.9),
@@ -123,6 +124,7 @@ TrackerMaterialBlock = cms.PSet(
 	106,  # Pixel Barrel services 
 	106,  # Pixel Barrel services 
 	107,  # Pixel endcap services
+        107,  # Pixel endcap services
 	6,    # TIB1 services  
 	7,    # TIB2 services  
 	8,    # TIB3 services  
@@ -203,6 +205,7 @@ TrackerMaterialBlock = cms.PSet(
       	 0.0,  # Pixel Barrel services 
 	27.5,  # Pixel Barrel services 
 	 0.0,  # Pixel endcap services
+        13.0,  # Pixel endcap services
 	35.0,  # TIB1 services  
 	35.0,  # TIB2 services  
 	35.0,  # TIB3 services  
@@ -265,7 +268,7 @@ TrackerMaterialBlock = cms.PSet(
 	32.0,  # TEC Layer 8
 	 0.0,  # TEC Layer 9
 	32.0,  # TEC Layer 9
-       120.0,  # Barrel wall
+       120.0,  # Barrel wall (what should this be? 160.0 in hybrid)
          4.42, # Endcap Wall : 4.86<eta<4.91
 	 4.65, # Endcap Wall : 4.82<eta<4.86
 	 4.84, # Endcap Wall : 4.40<eta<4.82
@@ -283,6 +286,7 @@ TrackerMaterialBlock = cms.PSet(
 	 27.5,  # Pixel Barrel services 
 	 32.0,  # Pixel Barrel services 
 	 13.0,  # Pixel endcap services
+         17.5,  # Pixel endcap services
 	 68.0,  # TIB1 services  
 	 68.0,  # TIB2 services  
 	 68.0,  # TIB3 services  
@@ -361,8 +365,9 @@ TrackerMaterialBlock = cms.PSet(
         # Fudge factor on x/X0
         FudgeFactor = cms.vdouble(
 	0.40,  # Pixel Barrel services 
-	2.00,  # Pixel Barrel services 
-	1.60,  # Pixel endcap services
+	1.50,  # Pixel Barrel services
+        1.00,  # Pixel endcap services
+        0.50,  # Pixel endcap services
 	1.45,  # TIB1 services  
 	1.45,  # TIB2 services  
 	1.45,  # TIB3 services  
@@ -425,7 +430,7 @@ TrackerMaterialBlock = cms.PSet(
 	 0.6,  # TEC Layer 8
 	 3.0,  # TEC Layer 9
 	 0.6,  # TEC Layer 9
-         3.8,  # Barrel wall
+         3.0,  # Barrel wall
         18.74,  # Endcap Wall : 4.86<eta<4.91
 	 4.57,  # Endcap Wall : 4.82<eta<4.86
 	 0.604, # Endcap Wall : 4.40<eta<4.82
