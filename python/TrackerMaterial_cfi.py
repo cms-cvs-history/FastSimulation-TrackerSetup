@@ -49,8 +49,10 @@ TrackerMaterialBlock = cms.PSet(
         # TOB inside wall (barrel)
         TOBInsideThickness = cms.vdouble(0.017, 0.009, 0.009), ## decrease by a factor 2
         # Tracker Outer barrel layers 1-6
-        TOBLayer1Thickness = cms.vdouble(0.044, 0.03, 0.03), ## decrease by 30%
-        TOBLayer2Thickness = cms.vdouble(0.044, 0.03, 0.03), ## decrease by 30%
+        #TOBLayer1Thickness = cms.vdouble(0.044, 0.03, 0.03), ## decrease by 30%
+        #TOBLayer2Thickness = cms.vdouble(0.044, 0.03, 0.03), ## decrease by 30%
+        TOBLayer1Thickness = cms.vdouble(0.033, 0.022, 0.022), ## no more stereo
+        TOBLayer2Thickness = cms.vdouble(0.033, 0.022, 0.022), ## no more stereo
         TOBLayer3Thickness = cms.vdouble(0.033, 0.022, 0.022), ## decrease by 30%
         TOBLayer4Thickness = cms.vdouble(0.033, 0.022, 0.022), ## decrease by 30%
         TOBLayer5Thickness = cms.vdouble(0.033, 0.022, 0.022), ## decrease by 30%
