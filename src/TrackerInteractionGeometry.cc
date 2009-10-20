@@ -354,32 +354,23 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   std::vector< ForwardDetLayer*>::const_iterator fl = posForwardLayers.begin();
 
   // Pixel disks 
-  // First Pixel disk: Z pos ??.? radii ??.?078, ??.?756
+  // First Pixel disk: Z pos 32.6 radii 4.7213, 15.3364
   double innerRadius = (**fl).specificSurface().innerRadius()-1.0;
   double outerRadius = (**fl).specificSurface().outerRadius()+2.0;
   const SimpleDiskBounds PIXD1(innerRadius, outerRadius,-0.0150,+0.0150);
   const Surface::PositionType PPIXD1(0.0,0.0,(**fl).surface().position().z()); 
-int mycnt = 0;
-std::cout << "fpix " << mycnt << " rin, rout, z = " << (**fl).specificSurface().innerRadius() << " "
-          << (**fl).specificSurface().outerRadius() << " " << (**fl).surface().position().z() << std::endl;
-  // Second Pixel disk: Z pos ??.? radii ??.?078, ??.?756
+  // Second Pixel disk: Z pos 40.1 radii 4.7213, 15.33646
   ++fl;
   innerRadius = (**fl).specificSurface().innerRadius()-1.0;
   outerRadius = std::max( (**fl).specificSurface().outerRadius()+2.0, outerRadius+0.000 );
   const SimpleDiskBounds PIXD2(innerRadius, outerRadius,-0.0150,+0.0150);
   const Surface::PositionType PPIXD2(0.0,0.0,(**fl).surface().position().z()); 
-++mycnt;
-std::cout << "fpix " << mycnt << " rin, rout, z = " << (**fl).specificSurface().innerRadius() << " "
-          << (**fl).specificSurface().outerRadius() << " " << (**fl).surface().position().z() << std::endl;
-  // Third Pixel disk: 
+  // Third Pixel disk:  Z pos 52.1 radii 4.7213, 15.3364
   ++fl;
   innerRadius = (**fl).specificSurface().innerRadius()-1.0;
   outerRadius = std::max( (**fl).specificSurface().outerRadius()+2.0, outerRadius+0.000 );
   const SimpleDiskBounds PIXD3(innerRadius, outerRadius,-0.0150,+0.0150);
   const Surface::PositionType PPIXD3(0.0,0.0,(**fl).surface().position().z()); 
-++mycnt;
-std::cout << "fpix " << mycnt << " rin, rout, z = " << (**fl).specificSurface().innerRadius() << " "
-          << (**fl).specificSurface().outerRadius() << " " << (**fl).surface().position().z() << std::endl;
 
   // Tracker Inner disks (add 3 cm for the outer radius to simulate cables, 
   // and remove 1cm to inner radius to allow for some extrapolation margin)
@@ -389,18 +380,12 @@ std::cout << "fpix " << mycnt << " rin, rout, z = " << (**fl).specificSurface().
   outerRadius = (**fl).specificSurface().outerRadius()+3.5;
   const SimpleDiskBounds TID1(innerRadius,outerRadius,-0.0150,+0.0150);
   const Surface::PositionType PTID1(0.,0.,(**fl).surface().position().z()); 
-++mycnt;
-std::cout << "tid  " << mycnt << " rin, rout, z = " << (**fl).specificSurface().innerRadius() << " "
-          << (**fl).specificSurface().outerRadius() << " " << (**fl).surface().position().z() << std::endl;
   // Second TID : Z pos 90.445 radii 23.14, 50.4337
   ++fl;
   innerRadius = (**fl).specificSurface().innerRadius()-0.5;
   outerRadius = std::max( (**fl).specificSurface().outerRadius()+3.5, outerRadius+0.000);
   const SimpleDiskBounds TID2(innerRadius,outerRadius,-0.0150,+0.0150);
   const Surface::PositionType PTID2(0.,0.,(**fl).surface().position().z()); 
-++mycnt;
-std::cout << "tid  " << mycnt << " rin, rout, z = " << (**fl).specificSurface().innerRadius() << " "
-          << (**fl).specificSurface().outerRadius() << " " << (**fl).surface().position().z() << std::endl;
   // Third TID : Z pos 105.445 radii 23.14, 50.4337
   ++fl;
   innerRadius = (**fl).specificSurface().innerRadius()-0.5;
@@ -993,14 +978,14 @@ std::cout << "tid  " << mycnt << " rin, rout, z = " << (**fl).specificSurface().
 	<< " zout/zin = " << zout << " " << zin << std::endl
 	<< " rout/rin = " << rout << " " << rin << std::endl;
     } else {
-//      /*
+      /*
       std::cout << " Cylinder number " << nCyl 
 		<< " (Active Layer Number = " <<  cyliterOut->layerNumber() 
 		<< " Forward ? " <<  cyliterOut->forward() << " ) "
 		<< " has dimensions of : " 
 		<< " zout = " << zout << "; " 
 		<< " rout = " << rout << std::endl;
-//      */
+      */
     }
     // Go to the next cylinder
     cyliterOut++;
