@@ -139,6 +139,10 @@ TrackerMaterialBlock = cms.PSet(
 	106,  # Pixel Barrel services 
 	107,  # Pixel endcap services
 	107,  # Pixel endcap services
+        32,   # stack layer 5 (central gap)
+        33,   # stack layer 6 (central gap)
+        34,   # stack layer 7 (central gap)
+        35,   # stack layer 8 (central gap)
 	6,    # TIB1 services  
 	7,    # TIB2 services  
 	8,    # TIB3 services  
@@ -220,6 +224,10 @@ TrackerMaterialBlock = cms.PSet(
 	27.5,  # Pixel Barrel services 
 	 0.0,  # Pixel endcap services
 	13.0,  # Pixel endcap services
+      -209.46, # stack layer 5 (central gap)
+      -209.46, # stack layer 6 (central gap)
+      -209.46, # stack layer 7 (central gap)
+      -209.46, # stack layer 8 (central gap)
 	35.0,  # TIB1 services  
 	35.0,  # TIB2 services  
 	35.0,  # TIB3 services  
@@ -301,6 +309,10 @@ TrackerMaterialBlock = cms.PSet(
 	 32.0,  # Pixel Barrel services 
 	 13.0,  # Pixel endcap services
 	 17.5,  # Pixel endcap services
+        209.46,# stack layer 5 (central gap)
+        209.46,# stack layer 6 (central gap)
+        209.46,# stack layer 7 (central gap)
+        209.46,# stack layer 8 (central gap)
 	 68.0,  # TIB1 services  
 	 68.0,  # TIB2 services  
 	 68.0,  # TIB3 services  
@@ -382,6 +394,10 @@ TrackerMaterialBlock = cms.PSet(
 	1.50,  # Pixel Barrel services 
 	1.00,  # Pixel endcap services
 	0.50,  # Pixel endcap services
+        0.00,  # stack layer 5 (central gap)
+        0.00,  # stack layer 6 (central gap)
+        0.00,  # stack layer 7 (central gap)
+        0.00,  # stack layer 8 (central gap)
 	1.45,  # TIB1 services  
 	1.45,  # TIB2 services  
 	1.45,  # TIB3 services  
