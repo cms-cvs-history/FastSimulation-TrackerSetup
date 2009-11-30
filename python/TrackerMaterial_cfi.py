@@ -17,16 +17,16 @@ TrackerMaterialBlock = cms.PSet(
         # Pixel Barrel Layers 1-3
         PXBThickness = cms.vdouble(0.0222, 0.0217, 0.0171), ## change to match rescaled Phase 1 PXB
         # Stacked Pixel Barrel layers 1-6
-        PXBStack1Thickness = cms.vdouble(0.0333, 0.03538, 0.03737), ## Changed to match new full sim mat
-        PXBStack2Thickness = cms.vdouble(0.0333, 0.03550, 0.03347), ## Changed to match new full sim mat
-        PXBStack3Thickness = cms.vdouble(0.0333, 0.03344, 0.03613), ## Changed to match new full sim mat
-        PXBStack4Thickness = cms.vdouble(0.0333, 0.03268, 0.03346), ## Changed to match new full sim mat
-        PXBStack5Thickness = cms.vdouble(0.0333, 0.03069, 0.03662), ## Changed to match new full sim mat
-        PXBStack6Thickness = cms.vdouble(0.0333, 0.03152, 0.03454), ## Changed to match new full sim mat
-        PXBStack7Thickness = cms.vdouble(0.0333, 0.03152, 0.03594), ## Changed to match new full sim mat
-        PXBStack8Thickness = cms.vdouble(0.0333, 0.03152, 0.03427), ## Changed to match new full sim mat
-        PXBStack9Thickness = cms.vdouble(0.0333, 0.03152, 0.03602), ## Changed to match new full sim mat
-        PXBStack10Thickness = cms.vdouble(0.0333, 0.03152, 0.03481), ## Changed to match new full sim mat
+        PXBStack1Thickness = cms.vdouble(0.0333, 0.03538, 0.03969), ## Changed to match new full sim mat
+        PXBStack2Thickness = cms.vdouble(0.0333, 0.03550, 0.03533), ## Changed to match new full sim mat
+        PXBStack3Thickness = cms.vdouble(0.0333, 0.03344, 0.03763), ## Changed to match new full sim mat
+        PXBStack4Thickness = cms.vdouble(0.0333, 0.03268, 0.03475), ## Changed to match new full sim mat
+        PXBStack5Thickness = cms.vdouble(0.0333, 0.03069, 0.03776), ## Changed to match new full sim mat
+        PXBStack6Thickness = cms.vdouble(0.0333, 0.03152, 0.03556), ## Changed to match new full sim mat
+        PXBStack7Thickness = cms.vdouble(0.0333, 0.03152, 0.03683), ## Changed to match new full sim mat
+        PXBStack8Thickness = cms.vdouble(0.0333, 0.03152, 0.03509), ## Changed to match new full sim mat
+        PXBStack9Thickness = cms.vdouble(0.0333, 0.03152, 0.03675), ## Changed to match new full sim mat
+        PXBStack10Thickness = cms.vdouble(0.0333, 0.03152, 0.03532), ## Changed to match new full sim mat
         # Pixel Barrel services at the end of layers 1-3
         PXB1CablesThickness = cms.vdouble(0.1, 0.042, 0.042), ## divide by ~2
         PXB2CablesThickness = cms.vdouble(0.04, 0.042, 0.042), ## ~ no change
