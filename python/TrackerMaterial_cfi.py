@@ -14,12 +14,11 @@ TrackerMaterialBlock = cms.PSet(
         #**********************************************************************
         # Beam Pipe
         BeamPipeThickness = cms.vdouble(0.0038, 0.00265, 0.00265), ## decrease by 30%
-        # Pixel Barrel Layers 1-3
-        PXBThickness = cms.vdouble(0.0222, 0.0217, 0.0217), ## ~ no change
-        PXB4Thickness = cms.vdouble(0.0222, 0.0217, 0.0217), ## ~ no change
-        # Stacked Pixel Barrel layers 1-6
-        PXBStack1Thickness = cms.vdouble(0.0333, 0.03538, 0.03538), ## Assume 1.5 x Single Pixel Layer
-        PXBStack2Thickness = cms.vdouble(0.0333, 0.03550, 0.03550), ## Assume 1.5 x Single Pixel Layer
+        # Pixel Barrel Layers 1-4
+        PXBThickness = cms.vdouble(0.0222, 0.0217, 0.0171), ## match the full sim rescaled Phase 1 mat
+        # Stacked Pixel Barrel layers 1-2
+        PXBStack1Thickness = cms.vdouble(0.0333, 0.03538, 0.03794), ## Change to match (new) fullsim mat
+        PXBStack2Thickness = cms.vdouble(0.0333, 0.03550, 0.03633), ## Change to match (new) fullsim mat
         # Pixel Barrel services at the end of layers 1-3
         PXB1CablesThickness = cms.vdouble(0.1, 0.042, 0.042), ## divide by ~2
         PXB2CablesThickness = cms.vdouble(0.04, 0.042, 0.042), ## ~ no change
