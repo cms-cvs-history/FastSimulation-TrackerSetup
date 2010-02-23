@@ -22,7 +22,7 @@
 TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& trackerMaterial,
 						       const GeometricSearchTracker* theGeomSearchTracker)
 {
- 
+  std::cout<<"begin TIG ***************"<<std::endl;
   // Fraction of radiation length : had oc values to account 
   // for detectors, cables, support, ...
   // Note : the second argument is not used in FAMOS
@@ -37,6 +37,17 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   beamPipeThickness = trackerMaterial.getParameter<std::vector<double> >("BeamPipeThickness");
   // Pixel Barrel Layers 1-3
   pxbThickness = trackerMaterial.getParameter<std::vector<double> >("PXBThickness");
+  // Stacked Pixel Layers 1-6
+  pxbStack1Thickness = trackerMaterial.getParameter<std::vector<double> >("PXBStack1Thickness");
+  pxbStack2Thickness = trackerMaterial.getParameter<std::vector<double> >("PXBStack2Thickness");
+  pxbStack3Thickness = trackerMaterial.getParameter<std::vector<double> >("PXBStack3Thickness");
+  pxbStack4Thickness = trackerMaterial.getParameter<std::vector<double> >("PXBStack4Thickness");
+  pxbStack5Thickness = trackerMaterial.getParameter<std::vector<double> >("PXBStack5Thickness");
+  pxbStack6Thickness = trackerMaterial.getParameter<std::vector<double> >("PXBStack6Thickness");
+   pxbStack7Thickness = trackerMaterial.getParameter<std::vector<double> >("PXBStack7Thickness");
+ pxbStack8Thickness = trackerMaterial.getParameter<std::vector<double> >("PXBStack8Thickness");
+ pxbStack9Thickness = trackerMaterial.getParameter<std::vector<double> >("PXBStack9Thickness");
+ pxbStack10Thickness = trackerMaterial.getParameter<std::vector<double> >("PXBStack10Thickness");
   // Pixel Barrel services at the end of layers 1-3
   pxb1CablesThickness = trackerMaterial.getParameter<std::vector<double> >("PXB1CablesThickness");
   pxb2CablesThickness = trackerMaterial.getParameter<std::vector<double> >("PXB2CablesThickness");
@@ -72,6 +83,11 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   tobLayer4Thickness = trackerMaterial.getParameter<std::vector<double> >("TOBLayer4Thickness");
   tobLayer5Thickness = trackerMaterial.getParameter<std::vector<double> >("TOBLayer5Thickness");
   tobLayer6Thickness = trackerMaterial.getParameter<std::vector<double> >("TOBLayer6Thickness");
+  tobLayer7Thickness = trackerMaterial.getParameter<std::vector<double> >("TOBLayer7Thickness");
+tobLayer8Thickness = trackerMaterial.getParameter<std::vector<double> >("TOBLayer8Thickness");
+tobLayer9Thickness = trackerMaterial.getParameter<std::vector<double> >("TOBLayer9Thickness");
+tobLayer10Thickness = trackerMaterial.getParameter<std::vector<double> >("TOBLayer10Thickness");
+
   // TOB services (endcap)
   tobOutsideThickness = trackerMaterial.getParameter<std::vector<double> >("TOBOutsideThickness");
   // Tracker EndCap disks layers 1-9
@@ -151,11 +167,22 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
       << "in FastSimulation/TrackerInteractionGeometry/data/TrackerMaterial.cfi"
       << std::endl;
   }
-
+ std::cout<<"A TIG ***************"<<std::endl;
   // The Beam pipe
   _theMPBeamPipe = new MediumProperties(beamPipeThickness[version],0.0001);  
   // The pixel barrel layers
   _theMPPixelBarrel = new MediumProperties(pxbThickness[version],0.0001);  
+  // The Stacked Pixel Barrel Layers
+  _theMPPixelBarrelS1 = new MediumProperties(pxbStack1Thickness[version],0.0001);
+  _theMPPixelBarrelS2 = new MediumProperties(pxbStack2Thickness[version],0.0001);
+  _theMPPixelBarrelS3 = new MediumProperties(pxbStack3Thickness[version],0.0001);
+  _theMPPixelBarrelS4 = new MediumProperties(pxbStack4Thickness[version],0.0001);
+  _theMPPixelBarrelS5 = new MediumProperties(pxbStack5Thickness[version],0.0001);
+  _theMPPixelBarrelS6 = new MediumProperties(pxbStack6Thickness[version],0.0001);
+   _theMPPixelBarrelS7 = new MediumProperties(pxbStack7Thickness[version],0.0001);
+_theMPPixelBarrelS8 = new MediumProperties(pxbStack8Thickness[version],0.0001);
+_theMPPixelBarrelS9 = new MediumProperties(pxbStack9Thickness[version],0.0001);
+_theMPPixelBarrelS10 = new MediumProperties(pxbStack10Thickness[version],0.0001);
     // Pixel Barrel services at the end of layers 1-3
   _theMPPixelOutside1 = new MediumProperties(pxb1CablesThickness[version],0.0001);  
   _theMPPixelOutside2 = new MediumProperties(pxb2CablesThickness[version],0.0001);  
@@ -191,6 +218,10 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   _theMPTOB4 = new MediumProperties(tobLayer4Thickness[version],0.0001);  
   _theMPTOB5 = new MediumProperties(tobLayer5Thickness[version],0.0001);  
   _theMPTOB6 = new MediumProperties(tobLayer6Thickness[version],0.0001);  
+  _theMPTOB7 = new MediumProperties(tobLayer7Thickness[version],0.0001);  
+_theMPTOB8 = new MediumProperties(tobLayer8Thickness[version],0.0001);  
+_theMPTOB9 = new MediumProperties(tobLayer9Thickness[version],0.0001);  
+_theMPTOB10 = new MediumProperties(tobLayer10Thickness[version],0.0001);  
   // TOB services (endcap)
   _theMPTOBEOutside = new MediumProperties(tobOutsideThickness[version],0.0001);  
   // The tracker endcap disks 1-9
@@ -200,7 +231,7 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   // TEC outside wall (endcap)
   _theMPEndcapOutside = new MediumProperties(endcapCables1Thickness[version],0.0001);  
   _theMPEndcapOutside2 = new MediumProperties(endcapCables2Thickness[version],0.0001);  
-
+ std::cout<<"B TIG ***************"<<std::endl;
   // Check that the Reco Tracker Geometry has been loaded
   if ( !theGeomSearchTracker ) 
     throw cms::Exception("FastSimulation/TrackerInteractionGeometry") 
@@ -217,7 +248,7 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   // Local pointers
   BoundCylinder* theCylinder;
   BoundDisk* theDisk;
-
+std::cout<<"C TIG ***************"<<std::endl;
   // Create the nest of cylinders
   const Surface::PositionType thePosition(0.,0.,0.);
   const Surface::RotationType theRotation(1.,0.,0.,0.,1.,0.,0.,0.,1.);
@@ -257,6 +288,78 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   maxLength = std::max( (**bl).specificSurface().bounds().length()/2.+1.7, maxLength+0.000 );
   const SimpleCylinderBounds  PIXB3( maxRadius-0.005, maxRadius+0.005, -maxLength, +maxLength);
 
+  // Fourth  pixel barrel layer: r=14.5504, l=53.38
+  ++bl;
+  maxLength = std::max( (**bl).specificSurface().bounds().length()/2.+0.0, maxLength+0.000 );
+  maxRadius = (**bl).specificSurface().radius();
+  const SimpleCylinderBounds  PIXB4( maxRadius-0.005, maxRadius+0.005, -maxLength, +maxLength);
+  
+std::cout<<"C TIG ***************"<<std::endl;
+  bl++;
+  // Stack 1 pixel barrel layer
+  maxLength = std::max( (**bl).specificSurface().bounds().length()/2., maxLength+0.000 );
+  maxRadius = (**bl).specificSurface().radius();
+  const SimpleCylinderBounds  PIXBS1( maxRadius-0.005, maxRadius+0.005, -maxLength, +maxLength);
+
+  bl++;
+  // Stack 2 pixel barrel layer
+  maxLength = std::max( (**bl).specificSurface().bounds().length()/2., maxLength+0.000 );
+  maxRadius = (**bl).specificSurface().radius();
+  const SimpleCylinderBounds  PIXBS2( maxRadius-0.005, maxRadius+0.005, -maxLength, +maxLength);
+
+  bl++;
+  // Stack 3 pixel barrel layer
+  maxLength = std::max( (**bl).specificSurface().bounds().length()/2., maxLength+0.000 );
+  maxRadius = (**bl).specificSurface().radius();
+  const SimpleCylinderBounds  PIXBS3( maxRadius-0.005, maxRadius+0.005, -maxLength, +maxLength);
+
+  bl++;
+  // Stack 4 pixel barrel layer
+  maxLength = std::max( (**bl).specificSurface().bounds().length()/2., maxLength+0.000 );
+  maxRadius = (**bl).specificSurface().radius();
+  const SimpleCylinderBounds  PIXBS4( maxRadius-0.005, maxRadius+0.005, -maxLength, +maxLength);
+
+  bl++;
+  // Stack 5 pixel barrel layer
+  maxLength = std::max( (**bl).specificSurface().bounds().length()/2., maxLength+0.000 );
+  maxRadius = (**bl).specificSurface().radius();
+  const SimpleCylinderBounds  PIXBS5( maxRadius-0.005, maxRadius+0.005, -maxLength, +maxLength);
+std::cout<<"D TIG ***************"<<std::endl;
+  bl++;
+  // Stack 6 pixel barrel layer
+  maxLength = std::max( (**bl).specificSurface().bounds().length()/2., maxLength+0.000 );
+  maxRadius = (**bl).specificSurface().radius();
+  const SimpleCylinderBounds  PIXBS6( maxRadius-0.005, maxRadius+0.005, -maxLength, +maxLength);
+std::cout<<"E TIG ***************"<<std::endl;
+bl++;
+std::cout<<"1 TIG ***************"<<std::endl;
+  // Stack 7 pixel barrel layer
+//std::cout<<(**bl).specificSurface().bounds().length()/2<<std::endl;
+std::cout<<"1.5 TIG ***************"<<std::endl;
+ maxLength = std::max( (**bl).specificSurface().bounds().length()/2., maxLength+0.000 );
+std::cout<<"2 TIG ***************"<<std::endl;
+maxRadius = (**bl).specificSurface().radius();
+// maxRadius = maxRadius + 1;
+std::cout<<"3 TIG ***************"<<std::endl;
+  const SimpleCylinderBounds  PIXBS7( maxRadius-0.005, maxRadius+0.005, -maxLength, +maxLength);
+std::cout<<"F TIG ***************"<<std::endl;
+
+ bl++;
+  // Stack 8 pixel barrel layer
+  maxLength = std::max( (**bl).specificSurface().bounds().length()/2., maxLength+0.000 );
+  maxRadius = (**bl).specificSurface().radius();
+  const SimpleCylinderBounds  PIXBS8( maxRadius-0.005, maxRadius+0.005, -maxLength, +maxLength);
+ bl++;
+  // Stack 9 pixel barrel layer
+  maxLength = std::max( (**bl).specificSurface().bounds().length()/2., maxLength+0.000 );
+  maxRadius = (**bl).specificSurface().radius();
+  const SimpleCylinderBounds  PIXBS9( maxRadius-0.005, maxRadius+0.005, -maxLength, +maxLength);
+ bl++;
+  // Stack 10 pixel barrel layer
+  maxLength = std::max( (**bl).specificSurface().bounds().length()/2., maxLength+0.000 );
+  maxRadius = (**bl).specificSurface().radius();
+  const SimpleCylinderBounds  PIXBS10( maxRadius-0.005, maxRadius+0.005, -maxLength, +maxLength);
+
   // Pixel Barrel Outside walls and cables
   const SimpleDiskBounds PIXBOut4( pxbOutCables1InnerRadius[version],pxbOutCables1OuterRadius[version],-0.5,0.5);
   const Surface::PositionType PPIXBOut4(0.0,0.0,pxbOutCables1ZPosition[version]);
@@ -269,28 +372,29 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
 
   const SimpleDiskBounds PIXBOut6(pixelOutCablesInnerRadius[version],pixelOutCablesOuterRadius[version],-0.5,0.5);
   const Surface::PositionType PPIXBOut6(0.0,0.0,pixelOutCablesZPosition[version]);
+std::cout<<"G TIG ***************"<<std::endl;
 
-
+/*
   // Tracker Inner Barrel : thin detectors (300 microns)
   // First TIB layer: r=25.6786, l=130.04
   ++bl;
   maxRadius = (**bl).specificSurface().radius();
-  maxLength = (**bl).specificSurface().bounds().length()/2.;
+  maxLength = (**bl).specificSurface().bounds().length()/2.+7.0;
   const SimpleCylinderBounds  TIB1( maxRadius-0.0150, maxRadius+0.0150, -maxLength, +maxLength);
   // Second TIB layer: r=34.0341, l=131.999
   ++bl;
   maxRadius = (**bl).specificSurface().radius();
-  maxLength = std::max( (**bl).specificSurface().bounds().length()/2., maxLength+0.000 );
+  maxLength = std::max( (**bl).specificSurface().bounds().length()/2.+7.0, maxLength+0.000 );
   const SimpleCylinderBounds  TIB2( maxRadius-0.0150, maxRadius+0.0150, -maxLength, +maxLength);
   // Third TIB layer: r=41.9599, l=131.628  !!!! Needs to be larger than TIB2
   ++bl;
   maxRadius = (**bl).specificSurface().radius();
-  maxLength = std::max( (**bl).specificSurface().bounds().length()/2., maxLength+0.000 );
+  maxLength = std::max( (**bl).specificSurface().bounds().length()/2.+7.0, maxLength+0.000 );
   const SimpleCylinderBounds  TIB3( maxRadius-0.0150, maxRadius+0.0150, -maxLength, +maxLength);
   // Fourth TIB layer: r=49.8924, l=132.78
   ++bl;
   maxRadius = (**bl).specificSurface().radius();
-  maxLength = std::max( (**bl).specificSurface().bounds().length()/2., maxLength+0.000 );
+  maxLength = std::max( (**bl).specificSurface().bounds().length()/2.+7.0, maxLength+0.000 );
   const SimpleCylinderBounds  TIB4( maxRadius-0.0150, maxRadius+0.0150, -maxLength, +maxLength);
 
   // Inner Barrel Cylinder & Ends : Cables and walls
@@ -303,7 +407,9 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   // Inner Tracker / Outer Barrel Wall
   const SimpleCylinderBounds  TOBCIn ( tobInCablesRadius[version]-0.5, tobInCablesRadius[version]+0.5,
 				      -tobInCablesLength[version],     tobInCablesLength[version]);
+*/
 
+/*
   // First TOB layer: r=60.7671, l=216.576
   ++bl;
   maxRadius = (**bl).specificSurface().radius();
@@ -337,6 +443,7 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
 
   const SimpleDiskBounds TOBEOut(tobOutCablesInnerRadius[version],tobOutCablesOuterRadius[version],-0.5,0.5);
   const Surface::PositionType PTOBEOut(0.0,0.0,tobOutCablesZPosition[version]);
+*/
 
   const Surface::RotationType theRotation2(1.,0.,0.,0.,1.,0.,0.,0.,1.);
 
@@ -356,10 +463,18 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   // Second Pixel disk: Z pos 48.5 radii 5.42078, 16.0756
   ++fl;
   innerRadius = (**fl).specificSurface().innerRadius()-1.0;
-  outerRadius = std::max( (**fl).specificSurface().outerRadius()+2.0, outerRadius+0.000 );
+  outerRadius = std::max( (**fl).specificSurface().outerRadius()+4.0, outerRadius+0.000 );
   const SimpleDiskBounds PIXD2(innerRadius, outerRadius,-0.0150,+0.0150);
   const Surface::PositionType PPIXD2(0.0,0.0,(**fl).surface().position().z()); 
+  // Third Pixel disk: Z pos 61.5 radii 5.82585, 14.5978
+  ++fl; 
+  innerRadius = (**fl).specificSurface().innerRadius()-1.0;
+  outerRadius = std::max( (**fl).specificSurface().outerRadius()+4.0, outerRadius+0.000 );
+  const SimpleDiskBounds PIXD3(innerRadius, outerRadius,-0.0150,+0.0150);
+  const Surface::PositionType PPIXD3(0.0,0.0,(**fl).surface().position().z());
 
+std::cout<<"H TIG ***************"<<std::endl;
+/*
   // Tracker Inner disks (add 3 cm for the outer radius to simulate cables, 
   // and remove 1cm to inner radius to allow for some extrapolation margin)
   // First TID : Z pos 78.445 radii 23.14, 50.4337
@@ -384,8 +499,9 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   // TID Wall and cables
   const SimpleDiskBounds TIDEOut(tidOutCablesInnerRadius[version],outerRadius+1.0,-0.5,0.5);
   const Surface::PositionType PTIDEOut(0.0,0.0,tidOutCablesZPosition[version]);
+*/
 
-
+/*
   // Tracker Endcaps : Add 11 cm to outer radius to correct for a bug, remove
   // 5cm to the inner radius (TEC7,8,9) to correct for a simular bug, and
   // remove other 2cm to inner radius to allow for some extrapolation margin
@@ -443,7 +559,7 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   outerRadius = std::max( (**fl).specificSurface().outerRadius()+2.0, outerRadius+0.000 );
   const SimpleDiskBounds TEC9(innerRadius,outerRadius,-0.0150,+0.0150);
   const Surface::PositionType PTEC9(0.,0.,(**fl).surface().position().z());
-
+  mlw remove tec*/
   // Outside : Endcap
   const SimpleDiskBounds TEOut(tecOutCables1InnerRadius[version],tecOutCables1OuterRadius[version],-0.5,0.5);
   const Surface::PositionType PTEOut(0.0,0.0,tecOutCables1ZPosition[version]);
@@ -455,7 +571,7 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   // (from inside to outside)
   // Do not change it thoughtlessly.
 
-
+std::cout<<"I TIG ***************"<<std::endl;
   // Beam Pipe
 
   unsigned layerNr = 100;
@@ -530,6 +646,21 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   else
     delete theCylinder;
 
+  // Fourth pixel barrel.
+  // NOTE: No fudge factors are added to the vector in TrackerMaterial_cfi.py
+  // so the methods fudgeFactors(layerNr), fudgeMin(layerNr) and fudgeMax(layerNr)
+  // all return a void vector
+  // (this is the default for all the other pixel sensitive layers)
+  layerNr = 38;
+  theCylinder = new BoundCylinder(thePosition,theRotation,PIXB4);
+  theCylinder->setMediumProperties(_theMPPixelBarrel);
+  if ( theCylinder->mediumProperties()->radLen() > 0. )
+    _theCylinders.push_back(TrackerLayer(theCylinder,false,layerNr,
+                                         minDim(layerNr),maxDim(layerNr),
+                                         fudgeFactors(layerNr)));
+  else
+    delete theCylinder;
+
   layerNr = 104;
   theDisk = new BoundDisk(PPIXBOut4,theRotation2,PIXBOut4);
   theDisk->setMediumProperties(_theMPPixelOutside4);
@@ -570,6 +701,21 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   else
     delete theDisk;
 
+  // Third pixel disk.
+  // NOTE: No fudge factors are added to the vector in TrackerMaterial_cfi.py
+  // so the methods fudgeFactors(layerNr), fudgeMin(layerNr) and fudgeMax(layerNr)
+  // all return a void vector
+  // (this is the default for all the other pixel sensitive layers)
+  layerNr = 39; 
+  theDisk = new BoundDisk(PPIXD3,theRotation2,PIXD3);
+  theDisk->setMediumProperties(_theMPPixelEndcap);
+  if ( theDisk->mediumProperties()->radLen() > 0. )
+    _theCylinders.push_back(TrackerLayer(theDisk,true,layerNr,
+                                         minDim(layerNr),maxDim(layerNr),
+                                         fudgeFactors(layerNr)));
+  else
+    delete theDisk;
+
   layerNr = 106;
   theCylinder = new BoundCylinder(thePosition,theRotation,PIXBOut5);
   theCylinder->setMediumProperties(_theMPPixelOutside5);
@@ -589,8 +735,110 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
 					 fudgeFactors(layerNr)));
   else
     delete theDisk;
+std::cout<<"J TIG ***************"<<std::endl;
+  layerNr = 28;
+  theCylinder = new BoundCylinder(thePosition,theRotation,PIXBS1);
+  theCylinder->setMediumProperties(_theMPPixelBarrelS1);
+  if ( theCylinder->mediumProperties()->radLen() > 0. )
+    _theCylinders.push_back(TrackerLayer(theCylinder,false,layerNr,
+                                         minDim(layerNr),maxDim(layerNr),
+                                         fudgeFactors(layerNr)));
+  else
+    delete theCylinder;
 
+  layerNr = 29;
+  theCylinder = new BoundCylinder(thePosition,theRotation,PIXBS2);
+  theCylinder->setMediumProperties(_theMPPixelBarrelS2);
+  if ( theCylinder->mediumProperties()->radLen() > 0. )
+    _theCylinders.push_back(TrackerLayer(theCylinder,false,layerNr,
+                                         minDim(layerNr),maxDim(layerNr),
+                                         fudgeFactors(layerNr)));
+  else
+    delete theCylinder;
+
+  layerNr = 30;
+  theCylinder = new BoundCylinder(thePosition,theRotation,PIXBS3);
+  theCylinder->setMediumProperties(_theMPPixelBarrelS3);
+  if ( theCylinder->mediumProperties()->radLen() > 0. )
+    _theCylinders.push_back(TrackerLayer(theCylinder,false,layerNr,
+                                         minDim(layerNr),maxDim(layerNr),
+                                         fudgeFactors(layerNr)));
+  else
+    delete theCylinder;
+
+  layerNr = 31;
+  theCylinder = new BoundCylinder(thePosition,theRotation,PIXBS4);
+  theCylinder->setMediumProperties(_theMPPixelBarrelS4);
+  if ( theCylinder->mediumProperties()->radLen() > 0. )
+    _theCylinders.push_back(TrackerLayer(theCylinder,false,layerNr,
+                                         minDim(layerNr),maxDim(layerNr),
+                                         fudgeFactors(layerNr)));
+  else
+    delete theCylinder;
+
+  layerNr = 32;
+  theCylinder = new BoundCylinder(thePosition,theRotation,PIXBS5);
+  theCylinder->setMediumProperties(_theMPPixelBarrelS5);
+  if ( theCylinder->mediumProperties()->radLen() > 0. )
+    _theCylinders.push_back(TrackerLayer(theCylinder,false,layerNr,
+                                         minDim(layerNr),maxDim(layerNr),
+                                         fudgeFactors(layerNr)));
+  else
+    delete theCylinder;
+
+  layerNr = 33;
+  theCylinder = new BoundCylinder(thePosition,theRotation,PIXBS6);
+  theCylinder->setMediumProperties(_theMPPixelBarrelS6);
+  if ( theCylinder->mediumProperties()->radLen() > 0. )
+    _theCylinders.push_back(TrackerLayer(theCylinder,false,layerNr,
+                                         minDim(layerNr),maxDim(layerNr),
+                                         fudgeFactors(layerNr)));
+  else
+    delete theCylinder;
+std::cout<<"J TIG ***************"<<std::endl;
+   layerNr = 34;
+  theCylinder = new BoundCylinder(thePosition,theRotation,PIXBS7);
+  theCylinder->setMediumProperties(_theMPPixelBarrelS7);
+  if ( theCylinder->mediumProperties()->radLen() > 0. )
+    _theCylinders.push_back(TrackerLayer(theCylinder,false,layerNr,
+                                         minDim(layerNr),maxDim(layerNr),
+                                         fudgeFactors(layerNr)));
+  else
+    delete theCylinder;
+
+ layerNr = 35;
+  theCylinder = new BoundCylinder(thePosition,theRotation,PIXBS8);
+  theCylinder->setMediumProperties(_theMPPixelBarrelS8);
+  if ( theCylinder->mediumProperties()->radLen() > 0. )
+    _theCylinders.push_back(TrackerLayer(theCylinder,false,layerNr,
+                                         minDim(layerNr),maxDim(layerNr),
+                                         fudgeFactors(layerNr)));
+  else
+    delete theCylinder;
+
+ layerNr = 36;
+  theCylinder = new BoundCylinder(thePosition,theRotation,PIXBS9);
+  theCylinder->setMediumProperties(_theMPPixelBarrelS9);
+  if ( theCylinder->mediumProperties()->radLen() > 0. )
+    _theCylinders.push_back(TrackerLayer(theCylinder,false,layerNr,
+                                         minDim(layerNr),maxDim(layerNr),
+                                         fudgeFactors(layerNr)));
+  else
+    delete theCylinder;
+
+ layerNr = 37;
+  theCylinder = new BoundCylinder(thePosition,theRotation,PIXBS10);
+  theCylinder->setMediumProperties(_theMPPixelBarrelS10);
+  if ( theCylinder->mediumProperties()->radLen() > 0. )
+    _theCylinders.push_back(TrackerLayer(theCylinder,false,layerNr,
+                                         minDim(layerNr),maxDim(layerNr),
+                                         fudgeFactors(layerNr)));
+  else
+    delete theCylinder;
+std::cout<<"J TIG ***************"<<std::endl;
+ std::cout<<"end TIG ***************"<<std::endl;
   // Inner Barrel 
+/*
 
   layerNr = TrackerInteractionGeometry::TIB+1;
   theCylinder = new BoundCylinder(thePosition,theRotation,TIB1);
@@ -652,7 +900,9 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   else
     delete theDisk;
   
+*/
   // Inner Endcaps
+/*
 
   layerNr = TrackerInteractionGeometry::TID+1;
   theDisk = new BoundDisk(PTID1,theRotation2,TID1);
@@ -695,8 +945,10 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
   else
     delete theDisk;
 
+*/
 
   // Outer Barrel 
+/*
 
   layerNr = 111;
   theCylinder = new BoundCylinder(thePosition,theRotation,TOBCIn);
@@ -777,9 +1029,10 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
 					 fudgeFactors(layerNr)));
   else
     delete theDisk;
+*/
 
   // Outer Endcaps
- 
+  /*
   layerNr = TrackerInteractionGeometry::TEC+1;
   theDisk = new BoundDisk(PTEC1,theRotation2,TEC1);
   theDisk->setMediumProperties(_theMPEndcap);
@@ -869,10 +1122,10 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
 					 fudgeFactors(layerNr)));
   else
     delete theDisk;
-
-
+mlw remove tec
+*/
   // Tracker Outside
-
+ /*mlw remove to add layers?????????
   layerNr = 113;
   theCylinder = new BoundCylinder(thePosition,theRotation,TBOut);
   theCylinder->setMediumProperties(_theMPBarrelOutside);
@@ -902,7 +1155,7 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
 					 fudgeFactors(layerNr)));
   else
     delete theDisk;
-
+ */
   // Check overall compatibility of cylinder dimensions
   // (must be nested cylinders)
   // Throw an exception if the test fails
@@ -941,14 +1194,14 @@ TrackerInteractionGeometry::TrackerInteractionGeometry(const edm::ParameterSet& 
 	<< " zout/zin = " << zout << " " << zin << std::endl
 	<< " rout/rin = " << rout << " " << rin << std::endl;
     } else {
-      /*
+        
       std::cout << " Cylinder number " << nCyl 
 		<< " (Active Layer Number = " <<  cyliterOut->layerNumber() 
 		<< " Forward ? " <<  cyliterOut->forward() << " ) "
 		<< " has dimensions of : " 
 		<< " zout = " << zout << "; " 
 		<< " rout = " << rout << std::endl;
-      */
+        
     }
     // Go to the next cylinder
     cyliterOut++;
@@ -999,6 +1252,17 @@ TrackerInteractionGeometry::~TrackerInteractionGeometry()
   delete _theMPBeamPipe;
   // The pixel barrel layers
   delete _theMPPixelBarrel;
+  // The Stacked Pixel Barrel layers
+  delete _theMPPixelBarrelS1;
+  delete _theMPPixelBarrelS2;
+  delete _theMPPixelBarrelS3;
+  delete _theMPPixelBarrelS4;
+  delete _theMPPixelBarrelS5;
+  delete _theMPPixelBarrelS6;
+delete _theMPPixelBarrelS7;
+delete _theMPPixelBarrelS8;
+delete _theMPPixelBarrelS9;
+delete _theMPPixelBarrelS10;
   // The pixel endcap disks
   delete _theMPPixelEndcap;
   // The various cables thicnesses for each layer / disks
