@@ -16,8 +16,11 @@ TrackerMaterialBlock = cms.PSet(
         #**********************************************************************
         # Beam Pipe
         BeamPipeThickness = cms.vdouble(0.0038, 0.00265, 0.00265, 0.00265, 0.00240 ),
-        # Pixel Barrel Layers 1-3
-        PXBThickness = cms.vdouble(0.0222, 0.0217, 0.0217, 0.0217, 0.0217), 
+        # Pixel Barrel Layers 1-4
+        PXBThickness = cms.vdouble(0.0222, 0.0217, 0.0217, 0.0217, 0.0171), ## match the full sim rescaled Phase 1 mat
+        # Stacked Pixel Barrel layers 1-2
+        PXBStack1Thickness = cms.vdouble(0.0333, 0.03538, 0.03794, 0.03794, 0.03794), ## Change to match (new) fullsim mat
+        PXBStack2Thickness = cms.vdouble(0.0333, 0.03550, 0.03633, 0.03633, 0.03633), ## Change to match (new) fullsim mat
         # Pixel Barrel services at the end of layers 1-3
         PXB1CablesThickness = cms.vdouble(0.1, 0.042, 0.042, 0.000, 0.000), 
         PXB2CablesThickness = cms.vdouble(0.04, 0.042, 0.042, 0.000, 0.000),
@@ -47,8 +50,8 @@ TrackerMaterialBlock = cms.PSet(
         # TOB inside wall (barrel)
         TOBInsideThickness = cms.vdouble(0.017, 0.009, 0.009, 0.009, 0.009),
         # Tracker Outer barrel layers 1-6
-        TOBLayer1Thickness = cms.vdouble(0.044, 0.03, 0.03, 0.03, 0.03),
-        TOBLayer2Thickness = cms.vdouble(0.044, 0.03, 0.03, 0.03, 0.03),
+        TOBLayer1Thickness = cms.vdouble(0.044, 0.03, 0.03, 0.03, 0.022), ## no more stereo
+        TOBLayer2Thickness = cms.vdouble(0.044, 0.03, 0.03, 0.03, 0.022), ## no more stereo
         TOBLayer3Thickness = cms.vdouble(0.033, 0.022, 0.022, 0.022, 0.022),
         TOBLayer4Thickness = cms.vdouble(0.033, 0.022, 0.022, 0.022, 0.022),
         TOBLayer5Thickness = cms.vdouble(0.033, 0.022, 0.022, 0.022, 0.022),
@@ -75,17 +78,18 @@ TrackerMaterialBlock = cms.PSet(
         PXB3CablesInnerRadius = cms.vdouble(8.5, 9.0, 9.0, 9.0, 9.0),
         # Pixel Barrel Outside walls and cables (endcap)
         PXBOutCables1InnerRadius = cms.vdouble(11.9, 11.9, 11.9, 4.2, 4.2),
+        ## TODO remove if not needed PXBOutCables1OuterRadius = cms.vdouble(16.0, 16.0, 16.0), ## Was 15.5, 15.5, 15.5 - lengthened for 4th pixel layer
         PXBOutCables1OuterRadius = cms.vdouble(15.5, 15.5, 15.5, 16.5, 16.5),
         PXBOutCables1ZPosition = cms.vdouble(27.999, 28.799, 28.799, 28.799, 28.799),
         PXBOutCables2InnerRadius = cms.vdouble(3.8, 3.8, 3.8, 3.8, 3.8),
         PXBOutCables2OuterRadius = cms.vdouble(16.5, 16.5, 16.5, 16.5, 16.5),
         PXBOutCables2ZPosition = cms.vdouble(28.0, 28.8, 28.8, 28.8, 28.8),
         # Pixel Outside walls and cables (barrel and endcap)
-        PixelOutCablesRadius = cms.vdouble(17.1, 17.5, 17.5, 17.5, 17.5), 
-        PixelOutCablesLength = cms.vdouble(64.8, 72.0, 72.0, 65.0, 65.0),
+        PixelOutCablesRadius = cms.vdouble(17.1, 17.5, 17.5, 17.5, 19.5), ## was 17.5
+        PixelOutCablesLength = cms.vdouble(64.8, 72.0, 72.0, 65.0, 67.17), ## was 65.0
         PixelOutCablesInnerRadius = cms.vdouble(3.0, 3.0, 7.197, 7.2, 6.5),
-        PixelOutCablesOuterRadius = cms.vdouble(17.3, 17.61, 17.61, 17.61, 17.61),
-        PixelOutCablesZPosition = cms.vdouble(64.9, 72.1, 72.1, 65.1, 65.1),
+        PixelOutCablesOuterRadius = cms.vdouble(17.3, 17.61, 17.61, 17.61, 19.61), ## was 17.61
+        PixelOutCablesZPosition = cms.vdouble(64.9, 72.1, 72.1, 65.1, 67.18),      ## was 65.1
         # Tracker Inner Barrel Outside Cables and walls (endcap)
         TIBOutCables1InnerRadius = cms.vdouble(22.5, 22.5, 22.5, 22.5, 22.5),
         TIBOutCables1OuterRadius = cms.vdouble(53.9, 53.9, 53.9, 53.9, 53.9),
@@ -134,68 +138,61 @@ TrackerMaterialBlock = cms.PSet(
 	107,  # Pixel endcap services
 	107,  # Pixel endcap services
 	107,  # Pixel endcap services
-	6,    # TIB1 services  
-	7,    # TIB2 services  
-	8,    # TIB3 services  
-	9,    # TIB4 services  
-	10,   # TID Layer 1
-	11,   # TID Layer 2
-	12,   # TID Layer 3
 	110,  # TID outside services
 	110,  # TID outside services
 	111,  # TOB inside services
 	111,  # TOB inside services
-	13,   # TOB Layer1
-	13,   # TOB Layer1
-	13,   # TOB Layer1
-	13,   # TOB Layer1
-	14,   # TOB Layer2
-	14,   # TOB Layer2
-	14,   # TOB Layer2
-	14,   # TOB Layer2
-	15,   # TOB Layer3
-	15,   # TOB Layer3
-	15,   # TOB Layer3
-	15,   # TOB Layer3
-	16,   # TOB Layer4
-	16,   # TOB Layer4
-	16,   # TOB Layer4
-	16,   # TOB Layer4
-	17,   # TOB Layer5
-	17,   # TOB Layer5
-	17,   # TOB Layer5
-	17,   # TOB Layer5
-	18,   # TOB Layer6
-	18,   # TOB Layer6
-	18,   # TOB Layer6
-	18,   # TOB Layer6
+	21,   # TOB Layer1
+	21,   # TOB Layer1
+	21,   # TOB Layer1
+	21,   # TOB Layer1
+	22,   # TOB Layer2
+	22,   # TOB Layer2
+	22,   # TOB Layer2
+	22,   # TOB Layer2
+	23,   # TOB Layer3
+	23,   # TOB Layer3
+	23,   # TOB Layer3
+	23,   # TOB Layer3
+	24,   # TOB Layer4
+	24,   # TOB Layer4
+	24,   # TOB Layer4
+	24,   # TOB Layer4
+	25,   # TOB Layer5
+	25,   # TOB Layer5
+	25,   # TOB Layer5
+	25,   # TOB Layer5
+	26,   # TOB Layer6
+	26,   # TOB Layer6
+	26,   # TOB Layer6
+	26,   # TOB Layer6
 	112,  # TOB services
 	112,  # TOB services
 	112,  # TOB services
-	 19,  # TEC Layer 1
-	 19,  # TEC Layer 1
-	 19,  # TEC Layer 1
-	 20,  # TEC Layer 2
-	 20,  # TEC Layer 2
-	 20,  # TEC Layer 2
-	 21,  # TEC Layer 3
-	 21,  # TEC Layer 3
-	 21,  # TEC Layer 3
-	 22,  # TEC Layer 4
-	 22,  # TEC Layer 4
-	 22,  # TEC Layer 4
-	 23,  # TEC Layer 5
-	 23,  # TEC Layer 5
-	 23,  # TEC Layer 5
-	 24,  # TEC Layer 6
-	 24,  # TEC Layer 6
-	 24,  # TEC Layer 6
-	 25,  # TEC Layer 7
-	 25,  # TEC Layer 7
-	 26,  # TEC Layer 8
-	 26,  # TEC Layer 8
-	 27,  # TEC Layer 9
-	 27,  # TEC Layer 9
+	 31,  # TEC Layer 1
+	 31,  # TEC Layer 1
+	 31,  # TEC Layer 1
+	 32,  # TEC Layer 2
+	 32,  # TEC Layer 2
+	 32,  # TEC Layer 2
+	 33,  # TEC Layer 3
+	 33,  # TEC Layer 3
+	 33,  # TEC Layer 3
+	 34,  # TEC Layer 4
+	 34,  # TEC Layer 4
+	 34,  # TEC Layer 4
+	 35,  # TEC Layer 5
+	 35,  # TEC Layer 5
+	 35,  # TEC Layer 5
+	 36,  # TEC Layer 6
+	 36,  # TEC Layer 6
+	 36,  # TEC Layer 6
+	 37,  # TEC Layer 7
+	 37,  # TEC Layer 7
+	 38,  # TEC Layer 8
+	 38,  # TEC Layer 8
+	 39,  # TEC Layer 9
+	 39,  # TEC Layer 9
 	113,  # Barrel Wall
 	114,  # Endcap Wall : 4.86<eta<4.91
 	114,  # Endcap Wall : 4.82<eta<4.86
@@ -224,13 +221,6 @@ TrackerMaterialBlock = cms.PSet(
 	 0.0,  # Pixel endcap services
 	10.0,  # Pixel endcap services
 	16.0,  # Pixel endcap services
-	35.0,  # TIB1 services  
-	35.0,  # TIB2 services  
-	35.0,  # TIB3 services  
-	35.0,  # TIB4 services  
-	34.0,  # TID Layer 1
-	34.0,  # TID Layer 2
-	34.0,  # TID Layer 3
 	47.5,  # TID outside services
 	22.0,  # TID outside services
 	27.5,  # TOB inside services
@@ -286,7 +276,7 @@ TrackerMaterialBlock = cms.PSet(
 	32.0,  # TEC Layer 8
 	 0.0,  # TEC Layer 9
 	32.0,  # TEC Layer 9
-       120.0,  # Barrel wall
+       160.0,  # Barrel wall
          4.42, # Endcap Wall : 4.86<eta<4.91
 	 4.65, # Endcap Wall : 4.82<eta<4.86
 	 4.84, # Endcap Wall : 4.40<eta<4.82
@@ -314,13 +304,6 @@ TrackerMaterialBlock = cms.PSet(
 	 10.0,  # Pixel endcap services
 	 11.0,  # Pixel endcap services
 	 18.0,  # Pixel endcap services
-	 68.0,  # TIB1 services  
-	 68.0,  # TIB2 services  
-	 68.0,  # TIB3 services  
-	 68.0,  # TIB4 services  
-	 42.0,  # TID Layer 1
-	 42.0,  # TID Layer 2
-	 42.0,  # TID Layer 3
 	 54.0,  # TID outside services
 	 24.0,  # TID outside services
 	 30.5,  # TOB inside services
@@ -404,13 +387,6 @@ TrackerMaterialBlock = cms.PSet(
 	1.60,  # Pixel endcap services
 	1.30,  # Pixel endcap services
 	0.70,  # Pixel endcap services
-	1.45,  # TIB1 services  
-	1.45,  # TIB2 services  
-	1.45,  # TIB3 services  
-	1.45,  # TIB4 services  
-	2.00,  # TID Layer 1
-	2.00,  # TID Layer 2
-	2.00,  # TID Layer 3
 	2.50,  # TID outside services
 	1.50,  # TID outside services
 	4.00,  # TOB inside services
@@ -466,7 +442,7 @@ TrackerMaterialBlock = cms.PSet(
 	 0.6,  # TEC Layer 8
 	 3.0,  # TEC Layer 9
 	 0.6,  # TEC Layer 9
-         3.8,  # Barrel wall
+         3.0,  # Barrel wall
         18.74,  # Endcap Wall : 4.86<eta<4.91
 	 2.30,  # Endcap Wall : 4.82<eta<4.86
 	 0.604, # Endcap Wall : 4.40<eta<4.82
