@@ -67,7 +67,7 @@ TrackerMaterialBlock = cms.PSet(
         # Position of dead material layers (cables, services, etc.)
         #**********************************************************************
         # Beam pipe
-        BeamPipeRadius = cms.vdouble(3.0, 3.0, 3.0, 3.0, 2.94),
+        BeamPipeRadius = cms.vdouble(3.0, 3.0, 3.0, 3.0, 2.44),
         BeamPipeLength = cms.vdouble(26.4, 28.3, 28.3, 28.3, 28.3),
         # Cables and Services at the end of PIXB1,2,3 ("disk")
         PXB1CablesInnerRadius = cms.vdouble(3.6, 3.7, 3.7, 3.7, 3.7),
