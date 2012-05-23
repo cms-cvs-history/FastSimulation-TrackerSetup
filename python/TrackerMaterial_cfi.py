@@ -18,6 +18,17 @@ TrackerMaterialBlock = cms.PSet(
         BeamPipeThickness = cms.vdouble(0.0038, 0.00265, 0.00265, 0.00265, 0.00240 ),
         # Pixel Barrel Layers 1-3
         PXBThickness = cms.vdouble(0.0222, 0.0217, 0.0217, 0.0217, 0.017134), 
+        # Stacked Pixel Barrel layers 1-6
+        PXBStack1Thickness = cms.vdouble(0.0333, 0.03538, 0.03538, 0.03538, 0.03969), ## Changed to match new full sim mat
+        PXBStack2Thickness = cms.vdouble(0.0333, 0.03550, 0.03550, 0.03550, 0.03533), ## Changed to match new full sim mat
+        PXBStack3Thickness = cms.vdouble(0.0333, 0.03344, 0.03344, 0.03344, 0.03763), ## Changed to match new full sim mat
+        PXBStack4Thickness = cms.vdouble(0.0333, 0.03268, 0.03268, 0.03268, 0.03475), ## Changed to match new full sim mat
+        PXBStack5Thickness = cms.vdouble(0.0333, 0.03069, 0.03069, 0.03069, 0.03776), ## Changed to match new full sim mat
+        PXBStack6Thickness = cms.vdouble(0.0333, 0.03152, 0.03152, 0.03152, 0.03556), ## Changed to match new full sim mat
+        PXBStack7Thickness = cms.vdouble(0.0333, 0.03152, 0.03152, 0.03152, 0.03683), ## Changed to match new full sim mat
+        PXBStack8Thickness = cms.vdouble(0.0333, 0.03152, 0.03152, 0.03152, 0.03509), ## Changed to match new full sim mat
+        PXBStack9Thickness = cms.vdouble(0.0333, 0.03152, 0.03152, 0.03152, 0.03675), ## Changed to match new full sim mat
+        PXBStack10Thickness = cms.vdouble(0.0333, 0.03152, 0.03152, 0.03152, 0.03532), ## Changed to match new full sim mat
         # Pixel Barrel services at the end of layers 1-3
         PXB1CablesThickness = cms.vdouble(0.1, 0.042, 0.042, 0.000, 0.000), 
         PXB2CablesThickness = cms.vdouble(0.04, 0.042, 0.042, 0.000, 0.000),
@@ -53,6 +64,10 @@ TrackerMaterialBlock = cms.PSet(
         TOBLayer4Thickness = cms.vdouble(0.033, 0.022, 0.022, 0.022, 0.022),
         TOBLayer5Thickness = cms.vdouble(0.033, 0.022, 0.022, 0.022, 0.022),
         TOBLayer6Thickness = cms.vdouble(0.033, 0.022, 0.022, 0.022, 0.022),
+        TOBLayer7Thickness = cms.vdouble(0.033, 0.022, 0.022, 0.022, 0.022), ## decrease by 30%
+        TOBLayer8Thickness = cms.vdouble(0.033, 0.022, 0.022, 0.022, 0.022), ## decrease by 30%
+        TOBLayer9Thickness = cms.vdouble(0.033, 0.022, 0.022, 0.022, 0.022), ## decrease by 30%
+        TOBLayer10Thickness = cms.vdouble(0.033, 0.022, 0.022, 0.022, 0.022), ## decrease by 30%
         # TOB services (endcap)
         TOBOutsideThickness = cms.vdouble(0.09, 0.15, 0.15, 0.15, 0.15),
         # Tracker EndCap disks layers 1-9
@@ -122,18 +137,24 @@ TrackerMaterialBlock = cms.PSet(
         # Convention is < 100 for sensitive layer, > 100 for dead material
         # (although this convention is used nowhere...)
         FudgeLayer = cms.vuint32(
-        104,  # Pixel Barrel services
-        104,  # Pixel Barrel services
-        104,  # Pixel Barrel services
-        104,  # Pixel Barrel services
-        104,  # Pixel Barrel services
-        104,  # Pixel Barrel services
-        104,  # Pixel Barrel services
-	106,  # Pixel wall 
-	106,  # Pixel wall 
+#        104,  # Pixel Barrel services
+#        104,  # Pixel Barrel services
+#        104,  # Pixel Barrel services
+#        104,  # Pixel Barrel services
+#        104,  # Pixel Barrel services
+#        104,  # Pixel Barrel services
+#        104,  # Pixel Barrel services
+#	106,  # Pixel wall 
+#	106,  # Pixel wall 
+#	107,  # Pixel endcap services
+        106,  # Pixel Barrel services #from longbarrel
+        106,  # Pixel Barrel services #ditto
 	107,  # Pixel endcap services
 	107,  # Pixel endcap services
-	107,  # Pixel endcap services
+        34,   # stack layer 5 (central gap)
+        35,   # stack layer 6 (central gap)
+        36,   # stack layer 7 (central gap)
+        37,   # stack layer 8 (central gap)
 	6,    # TIB1 services  
 	7,    # TIB2 services  
 	8,    # TIB3 services  
@@ -206,24 +227,29 @@ TrackerMaterialBlock = cms.PSet(
 	114,  # Endcap Wall : 3.30<eta<3.61
 	114,  # Endcap Wall : 3.05<eta<3.30
 	114,  # Endcap Wall : 2.95<eta<3.05
-	114,  # Endcap Wall : 2.75<eta<2.95
+#	114,  # Endcap Wall : 2.75<eta<2.95
 	114   # Endcap Wall
         ),
 
         # Lower limit on Radius or Z
         FudgeMin = cms.vdouble(
       	 0.0,  # Pixel Barrel services 
-      	 4.2,  # Pixel Barrel services 
-      	 5.1,  # Pixel Barrel services 
-      	 7.1,  # Pixel Barrel services 
-      	 8.2,  # Pixel Barrel services 
-      	10.0,  # Pixel Barrel services 
-      	11.0,  # Pixel Barrel services
-	 0.0,  # Pixel Wall 
-	29.0,  # Pixel Wall 
+#      	 4.2,  # Pixel Barrel services 
+#      	 5.1,  # Pixel Barrel services 
+#      	 7.1,  # Pixel Barrel services 
+#      	 8.2,  # Pixel Barrel services 
+#      	10.0,  # Pixel Barrel services 
+#      	11.0,  # Pixel Barrel services
+#	 0.0,  # Pixel Wall 
+	27.5,  # Pixel Wall   # was 29.0 before lb change
 	 0.0,  # Pixel endcap services
-	10.0,  # Pixel endcap services
-	16.0,  # Pixel endcap services
+#	10.0,  # Pixel endcap services
+#	16.0,  # Pixel endcap services
+        13.0,  # Pixel endcap services #as longbarrel
+        -209.46, # stack layer 5 (central gap)
+        -209.46, # stack layer 6 (central gap)
+        -209.46, # stack layer 7 (central gap)
+        -209.46, # stack layer 8 (central gap)
 	35.0,  # TIB1 services  
 	35.0,  # TIB2 services  
 	35.0,  # TIB3 services  
@@ -286,34 +312,47 @@ TrackerMaterialBlock = cms.PSet(
 	32.0,  # TEC Layer 8
 	 0.0,  # TEC Layer 9
 	32.0,  # TEC Layer 9
-       120.0,  # Barrel wall
+#       120.0,  # Barrel wall
+       160.0,  # Barrel wall
          4.42, # Endcap Wall : 4.86<eta<4.91
 	 4.65, # Endcap Wall : 4.82<eta<4.86
 	 4.84, # Endcap Wall : 4.40<eta<4.82
 	 7.37, # Endcap Wall : 4.00<eta<4.40
 	10.99, # Endcap Wall : 3.71<eta<4.00
 	14.70, # Endcap Wall : 3.61<eta<3.71
-	16.24, # Endcap Wall : 3.30<eta<3.61
-	22.00, # Endcap Wall : 3.05<eta<3.30
-	28.50, # Endcap Wall : 2.95<eta<3.05
-        31.50, # Endcap wall : 2.75<eta<2.95
-        36.0   # Endcap wall
+#	16.24, # Endcap Wall : 3.30<eta<3.61
+#	22.00, # Endcap Wall : 3.05<eta<3.30
+#	28.50, # Endcap Wall : 2.95<eta<3.05
+#        31.50, # Endcap wall : 2.75<eta<2.95
+#        36.0   # Endcap wall
+        16.24, # Endcap Wall : 3.50<eta<3.61 #as longbarrel
+        18.13, # Endcap Wall : 3.00<eta<3.50
+        33.0,  # Endcap wall
+        68.0   # Endcap wall
          ),
 
         # Upper limit on Radius or Z
         FudgeMax = cms.vdouble(
-      	  4.2,  # Pixel Barrel services 
-      	  5.1,  # Pixel Barrel services 
-      	  7.1,  # Pixel Barrel services 
-      	  8.2,  # Pixel Barrel services 
-      	 10.0,  # Pixel Barrel services 
-      	 11.0,  # Pixel Barrel services
-       	 11.9,  # Pixel Barrel services 
-	 29.0,  # Pixel Wall 
-	 33.5,  # Pixel Wall 
-	 10.0,  # Pixel endcap services
-	 11.0,  # Pixel endcap services
-	 18.0,  # Pixel endcap services
+#      	  4.2,  # Pixel Barrel services 
+#      	  5.1,  # Pixel Barrel services 
+#      	  7.1,  # Pixel Barrel services 
+#      	  8.2,  # Pixel Barrel services 
+#      	 10.0,  # Pixel Barrel services 
+#      	 11.0,  # Pixel Barrel services
+#       	 11.9,  # Pixel Barrel services 
+#	 29.0,  # Pixel Wall 
+#	 33.5,  # Pixel Wall 
+#	 10.0,  # Pixel endcap services
+#	 11.0,  # Pixel endcap services
+#	 18.0,  # Pixel endcap services
+         27.5,  # Pixel Barrel services #as longbarrel
+         32.0,  # Pixel Barrel services
+         13.0,  # Pixel endcap services
+         17.5,  # Pixel endcap services
+         209.46,# stack layer 5 (central gap)
+         209.46,# stack layer 6 (central gap)
+         209.46,# stack layer 7 (central gap)
+         209.46,# stack layer 8 (central gap)
 	 68.0,  # TIB1 services  
 	 68.0,  # TIB2 services  
 	 68.0,  # TIB3 services  
@@ -383,27 +422,38 @@ TrackerMaterialBlock = cms.PSet(
 	 10.99, # Endcap Wall : 4.00<eta<4.40
 	 14.70, # Endcap Wall : 3.71<eta<4.00
 	 16.24, # Endcap Wall : 3.61<eta<3.71
-	 22.00, # Endcap Wall : 3.30<eta<3.61
-	 28.50, # Endcap Wall : 3.05<eta<3.30
-	 31.50, # Endcap Wall : 2.95<eta<3.05
-	 36.00, # Endcap Wall : 2.75<eta<2.95
+#	 22.00, # Endcap Wall : 3.30<eta<3.61
+#	 28.50, # Endcap Wall : 3.05<eta<3.30
+#	 31.50, # Endcap Wall : 2.95<eta<3.05
+#	 36.00, # Endcap Wall : 2.75<eta<2.95
+         18.13, # Endcap Wall : 3.50<eta<3.61 #as longbarrel
+         30.00, # Endcap Wall : 3.00<eta<3.50
+         35.0,  # Endcap wall
 	120.0   # Endcap wall
          ),
 
         # Fudge factor on x/X0
         FudgeFactor = cms.vdouble(
-	0.00,  # Pixel Barrel services 
-	2.50,  # Pixel Barrel services 
-	0.00,  # Pixel Barrel services 
-	2.70,  # Pixel Barrel services 
-	0.00,  # Pixel Barrel services 
-	2.80,  # Pixel Barrel services 
-	0.50,  # Pixel Barrel services 
-	0.27,  # Pixel Wall
-	1.90,  # Pixel Wall 
-	1.60,  # Pixel endcap services
-	1.30,  # Pixel endcap services
-	0.70,  # Pixel endcap services
+#	0.00,  # Pixel Barrel services 
+#	2.50,  # Pixel Barrel services 
+#	0.00,  # Pixel Barrel services 
+#	2.70,  # Pixel Barrel services 
+#	0.00,  # Pixel Barrel services 
+#	2.80,  # Pixel Barrel services 
+#	0.50,  # Pixel Barrel services 
+#	0.27,  # Pixel Wall
+#	1.90,  # Pixel Wall 
+#	1.60,  # Pixel endcap services
+#	1.30,  # Pixel endcap services
+#	0.70,  # Pixel endcap services
+        0.40,  # Pixel Barrel services
+        1.50,  # Pixel Barrel services
+        1.00,  # Pixel endcap services
+        0.50,  # Pixel endcap services
+        0.00,  # stack layer 5 (central gap)
+        0.00,  # stack layer 6 (central gap)
+        0.00,  # stack layer 7 (central gap)
+        0.00,  # stack layer 8 (central gap)
 	1.45,  # TIB1 services  
 	1.45,  # TIB2 services  
 	1.45,  # TIB3 services  
@@ -442,38 +492,46 @@ TrackerMaterialBlock = cms.PSet(
 	0.50,  # TOB services
 	1.50,  # TOB services
 	1.80,  # TOB services
-	 2.0,  # TEC Layer 1
+#	 2.0,  # TEC Layer 1
+         2.2,  # TEC Layer 1 #as longbarrel
 	 0.8,  # TEC Layer 1
 	 1.6,  # TEC Layer 1
-	 2.0,  # TEC Layer 2
+#	 2.0,  # TEC Layer 2
+         2.2,  # TEC Layer 2 #as longbarrel
 	 0.8,  # TEC Layer 2
 	 1.6,  # TEC Layer 2
-	 2.0,  # TEC Layer 3
+#	 2.0,  # TEC Layer 3
+         2.2,  # TEC Layer 3 #as longbarrel
 	 0.8,  # TEC Layer 3
 	 1.6,  # TEC Layer 3
-	 2.3,  # TEC Layer 4
+#	 2.3,  # TEC Layer 4
+         2.5,  # TEC Layer 4 #as longbarrel
 	 0.6,  # TEC Layer 4
 	 1.4,  # TEC Layer 4
-	 2.3,  # TEC Layer 5
+#	 2.3,  # TEC Layer 5
+         2.5,  # TEC Layer 5 #as longbarrel
 	 0.6,  # TEC Layer 5
 	 1.4,  # TEC Layer 5
 	 2.5,  # TEC Layer 6
 	 0.6,  # TEC Layer 6
 	 1.4,  # TEC Layer 6
-	 2.7,  # TEC Layer 7
+#	 2.7,  # TEC Layer 7
+         3.0,  # TEC Layer 7 #as longbarrel
 	 0.6,  # TEC Layer 7
 	 3.0,  # TEC Layer 8
 	 0.6,  # TEC Layer 8
 	 3.0,  # TEC Layer 9
 	 0.6,  # TEC Layer 9
-         3.8,  # Barrel wall
+#         3.8,  # Barrel wall
+         3.0,  # Barrel wall #as longbarrel
         18.74,  # Endcap Wall : 4.86<eta<4.91
-	 2.30,  # Endcap Wall : 4.82<eta<4.86
+#	 2.30,  # Endcap Wall : 4.82<eta<4.86
+         4.57,  # Endcap Wall : 4.82<eta<4.86 #as longbarrel
 	 0.604, # Endcap Wall : 4.40<eta<4.82
 	 0.424, # Endcap Wall : 4.00<eta<4.40
 	 0.327, # Endcap Wall : 3.71<eta<4.00
 	 0.591, # Endcap Wall : 3.61<eta<3.71
-	 7.00,  # Endcap Wall : 3.30<eta<3.61
+#	 7.00,  # Endcap Wall : 3.30<eta<3.61
 	 4.40,  # Endcap Wall : 3.05<eta<3.30
 	 3.30,  # Endcap Wall : 2.95<eta<3.05
 	 1.40,  # Endcap Wall : 2.75<eta<2.95
